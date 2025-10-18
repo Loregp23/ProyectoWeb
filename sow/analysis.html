@@ -1,28 +1,243 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Análisis - Placeholder</title>
-  <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="../assets/css/sow.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Volver</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section style="padding:4rem 2rem;">
-      <h1>Análisis (borrador)</h1>
-      <p>Aquí irá el análisis detallado del sitio. Página placeholder para diseñar más tarde.</p>
-    </section>
-  </main>
-  <footer>
-    <p>© 2025 Web Atelier (UDIT)</p>
-  </footer>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Análisis - Placeholder</title>
+    <link rel="stylesheet" href="../assets/css/index.css" />
+    <link rel="stylesheet" href="../assets/css/sow.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Volver</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="analysis-section" style="padding: 3rem 2rem">
+        <h1>Análisis visual — Galería</h1>
+        <p>
+          Scroll vertical con 13 imágenes y textos alternando la posición de la
+          imagen (izquierda / derecha). Al desplazarte verás un poco de la
+          anterior y la siguiente entrada.
+        </p>
+
+        <div class="analysis-list" id="analysisList">
+          <!-- 13 items: media + content -->
+          <!-- We'll alternate media position with CSS :nth-child -->
+
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://ik.imagekit.io/6g9vwtwyq/Captura%20web%204.png?updatedAt=1760803675054"
+                  alt="shot 1"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 1</h2>
+                <p>Descripción y observaciones sobre la imagen 1.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=11"
+                  alt="shot 2"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 2</h2>
+                <p>Descripción y observaciones sobre la imagen 2.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=12"
+                  alt="shot 3"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 3</h2>
+                <p>Descripción y observaciones sobre la imagen 3.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=13"
+                  alt="shot 4"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 4</h2>
+                <p>Descripción y observaciones sobre la imagen 4.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=14"
+                  alt="shot 5"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 5</h2>
+                <p>Descripción y observaciones sobre la imagen 5.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=15"
+                  alt="shot 6"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 6</h2>
+                <p>Descripción y observaciones sobre la imagen 6.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=16"
+                  alt="shot 7"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 7</h2>
+                <p>Descripción y observaciones sobre la imagen 7.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=17"
+                  alt="shot 8"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 8</h2>
+                <p>Descripción y observaciones sobre la imagen 8.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=18"
+                  alt="shot 9"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 9</h2>
+                <p>Descripción y observaciones sobre la imagen 9.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=19"
+                  alt="shot 10"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 10</h2>
+                <p>Descripción y observaciones sobre la image 10.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=20"
+                  alt="shot 11"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 11</h2>
+                <p>Descripción y observaciones sobre la imagen 11.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=21"
+                  alt="shot 12"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 12</h2>
+                <p>Descripción y observaciones sobre la imagen 12.</p>
+              </div>
+            </div>
+          </div>
+          <div class="analysis-item">
+            <div class="inner">
+              <div class="media">
+                <img
+                  src="https://picsum.photos/900/600?random=22"
+                  alt="shot 13"
+                />
+              </div>
+              <div class="content">
+                <h2>Imagen 13</h2>
+                <p>Descripción y observaciones sobre la imagen 13.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      // Sync active item using IntersectionObserver
+      (function () {
+        var items = Array.from(document.querySelectorAll(".analysis-item"));
+        if (!items.length) return;
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting && e.intersectionRatio > 0.45) {
+                items.forEach(function (i) {
+                  i.classList.remove("active");
+                });
+                e.target.classList.add("active");
+              }
+            });
+          },
+          { threshold: [0.45, 0.6] }
+        );
+        items.forEach(function (it) {
+          obs.observe(it);
+        });
+      })();
+    </script>
+    <footer>
+      <p>© 2025 Web Atelier (UDIT)</p>
+    </footer>
+  </body>
 </html>
