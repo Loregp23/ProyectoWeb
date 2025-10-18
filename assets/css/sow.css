@@ -1,11 +1,24 @@
-header {
-	background: #fff;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+:root{
+  --header-height: 64px; /* mobile-first default */
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
 nav {
-	position: fixed;
-	top: 0;
-	z-index: 1000;
+  position: relative; /* header handles fixed positioning */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 nav ul {
 	list-style: none;
@@ -22,7 +35,7 @@ nav ul li a {
 }
 
 body {
-    background-color: azure;
+  background-color: azure;
 }
 
 section {
@@ -36,40 +49,120 @@ nav ul li a:focus {
 	color: #007acc;
 	outline: none;
 }
+
+/* Cover and typewriter (mobile-first) */
 .cover {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	max-width: 100vw;
-	background: #222;
-	color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  height: 100vh;
+  width: 100%;
+background: rgba(255, 255, 255, 0.14);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+  color: #000000;
+  padding: 4vh 4vw;
+  box-sizing: border-box;
+  margin-bottom: 2.5rem; /* space after cover on mobile */
 }
+
+/* add extra gap before section headings (like Awwwards) */
+main section h2 {
+  margin-top: 0.5rem;
+}
+
+/* larger gap on wider screens */
+@media (min-width: 768px) {
+  .cover { margin-bottom: 4.5rem; }
+  main section h2 { margin-top: 1.5rem; }
+}
+
+/* Split layout for preview + analysis */
+.site-split {
+  display: block; /* stacked on mobile */
+  gap: 1rem;
+  margin-top: 1.5rem; /* increased spacing under the H2 (mobile-first) */
+  padding: 0 1rem; /* horizontal padding to give breathing room from page edges */
+  box-sizing: border-box;
+}
+.site-split__left,
+.site-split__right {
+  box-sizing: border-box;
+  padding: 0; /* remove per-column padding to keep outer padding consistent */
+}
+
+/* Move horizontal spacing so the text column starts further right.
+   We remove extra left padding from the left column and instead apply it
+   as left padding on the article (mobile-first). Desktop overrides increase it. */
+.site-split__left {
+  padding-left: 0.125rem; /* tiny inset for mobile */
+}
+
+.site-embed-wrapper { overflow:auto; display:flex; justify-content:center; }
+.site-embed {
+  /* prefer landscape: use aspect-ratio so width > height by default */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  aspect-ratio: 16 / 9; /* default landscape ratio */
+  height: auto; /* let aspect-ratio control height */
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  background: #fff;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  /* use flex so the left column can size to the iframe intrinsic width */
+  .site-split {
+    display: flex;
+    flex-wrap: nowrap;
+    /* stretch columns so right column can match iframe height */
+    align-items: stretch;
+    gap: 1rem; /* reduce inter-column gap so text is closer to iframe */
+    margin-top: 4.5rem; /* larger gap on desktop */
+    padding: 0 4rem; /* larger horizontal padding on desktop */
+  }
+  /* left column won't force equal width; it will size to its content (iframe) */
+  .site-split__left { flex: 0 0 auto; padding-left: 0; padding-right: 0; }
+  /* right side is flexible and will take remaining space */
+  .site-split__right { flex: 1 1 360px; /* allow vertical centering of its content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* desktop: prefer a wider iframe (landscape), limit maximum width */
+  .site-embed {
+    width: min(1200px, 65vw);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    min-height: 360px;
+  }
+}
+
 .title {
-	overflow: hidden;
-	white-space: nowrap;
-	border-right: 0.15em solid currentColor;
-	animation: typing 3s steps(30, end) forwards, blink-caret 0.75s step-end infinite;
+  display: inline-block;
+  white-space: normal; /* allow wrapping */
+  width: auto;
+  max-width: min(92vw, 60ch);
+  /* Slightly bigger: larger clamp max and a more aggressive fluid scale */
+  font-size: clamp(1.5rem, 7.5vw, 3rem);
+  line-height: 1.02;
+  border: none;
+  font-weight: 700; /* make the cover title stand out */
 }
 
 h1 {
-	display: block;
-	max-width: 24%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: auto;
 }
 
-@keyframes typing {
-	from {
-		width: 0;
-	}
-	to {
-		width: 100%;
-	}
-}
-@keyframes blink-caret {
-	50% {
-		border-color: transparent;
-	}
-}
+
 .poppins-thin {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -176,4 +269,260 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 900;
   font-style: italic;
+}
+
+/* Cool infinite background scrolling animation.
+/* Exo thin font from Google. */
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+/* Main styles */
+body {
+  /* reserve space for fixed header */
+  padding-top: var(--header-height);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  /* img size is 50x50 */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse 0.92s infinite;
+  /* Safari 4+ */
+  -moz-animation: bg-scrolling-reverse 0.92s infinite;
+  /* Fx 5+ */
+  -o-animation: bg-scrolling-reverse 0.92s infinite;
+  /* Opera 12+ */
+  animation: bg-scrolling-reverse 0.92s infinite;
+  /* IE 10+ */
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+/* Larger headers on wider screens */
+@media (min-width: 768px) {
+  :root { --header-height: 72px; }
+}
+@media (min-width: 1200px) {
+  :root { --header-height: 88px; }
+}
+
+/* Give users the option to reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .title { animation: none; width: auto; border-right: none; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Article styles for the right column */
+.site-article {
+  color: #000; /* black text */
+  text-align: left; /* justify to left */
+  padding-left: 0.25rem; /* mobile-first: bring text closer to iframe */
+  --article-gap: 1.25rem; /* default gap between article elements */
+}
+.site-article__title {
+  /* ~3x larger than before, responsive */
+  font-size: clamp(2.5rem, 6.5vw, 3.5rem);
+  font-weight: 800;
+  margin: 0 0 var(--article-gap) 0; /* use uniform gap */
+}
+.site-article__body {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 var(--article-gap) 0; /* same gap to the button */
+}
+
+@media (min-width: 768px) {
+  /* ensure article height doesn't exceed iframe on desktop; scroll if needed */
+  .site-article { max-height: calc(78vh - var(--header-height)); overflow-y: auto; padding-left: 0.5rem; }
+}
+button, .learn-more {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ background: transparent;
+ padding: 0;
+ font-size: inherit;
+ font-family: inherit;
+}
+
+/* make sure poppins utility classes apply the actual font-family
+   (in case another stylesheet resets fonts) */
+.poppins-thin,
+.poppins-extralight,
+.poppins-light,
+.poppins-regular,
+.poppins-medium,
+.poppins-semibold,
+.poppins-bold,
+.poppins-extrabold,
+.poppins-black,
+.poppins-thin-italic,
+.poppins-extralight-italic,
+.poppins-light-italic,
+.poppins-regular-italic,
+.poppins-medium-italic,
+.poppins-semibold-italic,
+.poppins-bold-italic,
+.poppins-extrabold-italic,
+.poppins-black-italic {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.learn-more {
+ width: 12rem;
+ height: auto;
+ display: inline-block; /* ensure anchor behaves like button */
+}
+
+.learn-more .circle {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: relative;
+ display: block;
+ margin: 0;
+ width: 3rem;
+ height: 3rem;
+ background: #282936;
+ border-radius: 1.625rem;
+}
+
+.learn-more .circle .icon {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ background: #fff;
+}
+
+.learn-more .circle .icon.arrow {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ left: 0.625rem;
+ width: 1.125rem;
+ height: 0.125rem;
+ background: none;
+}
+
+.learn-more .circle .icon.arrow::before {
+ position: absolute;
+ content: "";
+ top: -0.29rem;
+ right: 0.0625rem;
+ width: 0.625rem;
+ height: 0.625rem;
+ border-top: 0.125rem solid #fff;
+ border-right: 0.125rem solid #fff;
+ transform: rotate(45deg);
+}
+
+.learn-more .button-text {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 0.15rem; /* tighter to the arrow */
+  color: #282936;
+  font-weight: 700; /* back to bold as requested */
+ line-height: 1.6;
+ text-align: center;
+ text-transform: uppercase;
+}
+
+button:hover .circle, .learn-more:hover .circle {
+ width: 100%;
+}
+
+button:hover .circle .icon.arrow,
+.learn-more:hover .circle .icon.arrow {
+ background: #fff;
+ transform: translate(1rem, 0);
+}
+
+button:hover .button-text, .learn-more:hover .button-text {
+ color: #fff;
+}
+
+/* fallback when iframe cannot display (CSP / X-Frame-Options blocking) */
+.embed-fallback {
+  display: none;
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255,255,255,0.02);
+  border-radius: 6px;
+}
+.embed-fallback p { margin: 0 0 0.5rem 0; color: #222; }
+.embed-fallback .embed-open { color: #007acc; text-decoration: none; font-weight: 600; }
+.site-embed[aria-hidden="true"] { display: none; }
+
+/* force thumbnail mode: hide iframe, show fallback thumbnail */
+.site-embed-wrapper.force-thumb .site-embed {
+  display: none;
+}
+.site-embed-wrapper.force-thumb .embed-fallback {
+  display: block;
+}
+/* make the fallback image match the iframe sizing and styling */
+.site-embed-wrapper.force-thumb .embed-fallback img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  background: #fff;
+}
+@media (min-width: 768px) {
+  .site-embed-wrapper.force-thumb .embed-fallback img {
+    width: min(1200px, 65vw);
+    min-height: 360px;
+  }
 }
