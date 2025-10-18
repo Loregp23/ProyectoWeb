@@ -28,14 +28,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zen+Dots&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Carattere&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sulphur+Point:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="sow-index">
     <header>
       <nav>
         <!-- Menú de navegación fijo -->
+        <span class="sow-brand">Some Outstanding Webs</span>
         <ul>
           <li><a href="#site-awwwards">Awwwards</a></li>
           <li><a href="#site-webby">Webby</a></li>
@@ -48,7 +49,7 @@
     <main>
       <section class="cover">
         <h1
-          class="title poppins-bold-italic"
+          class="title poppins-bold-italic rainbow"
           aria-label="Some Outstanding Webs"
         >
           SOME OUTSTANDING WEBS
@@ -56,7 +57,7 @@
       </section>
       <!-- Secciones individuales para cada sitio -->
       <section id="site-awwwards">
-        <h2>Awwwards</h2>
+        <h2 class="rainbow">Awwwards</h2>
         <div class="site-split">
           <div class="site-split__left">
             <!-- iframe placeholder: set data-src="https://example.com" and optional data-width/data-height (e.g. 1200px,800px) -->
@@ -98,7 +99,7 @@
       </section>
 
       <section id="site-webby">
-        <h2>Webby Awards</h2>
+        <h2 class="rainbow">Webby Awards</h2>
         <div class="site-split">
           <div class="site-split__left">
             <div class="site-embed-wrapper">
@@ -144,7 +145,7 @@
       </section>
 
       <section id="site-fwa">
-        <h2>FWA</h2>
+        <h2 class="rainbow">FWA</h2>
         <div class="site-split">
           <div class="site-split__left">
             <div class="site-embed-wrapper">
@@ -190,7 +191,7 @@
       </section>
 
       <section id="site-cssda">
-        <h2>CSSDA</h2>
+        <h2 class="rainbow">CSSDA</h2>
         <div class="site-split">
           <div class="site-split__left">
             <div class="site-embed-wrapper force-thumb">
@@ -291,6 +292,44 @@
             }
           }, 1200); // 1.2s timeout
         });
+      })();
+    </script>
+    <script>
+      // Show footer only when user is near the page bottom
+      (function () {
+        var throttle = function (fn, wait) {
+          var t = null;
+          return function () {
+            if (t) return;
+            t = setTimeout(function () {
+              t = null;
+              fn();
+            }, wait);
+          };
+        };
+
+        function checkFooter() {
+          var scrollY = window.scrollY || window.pageYOffset;
+          var vh = Math.max(
+            document.documentElement.clientHeight || 0,
+            window.innerHeight || 0
+          );
+          var docH = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight
+          );
+          // consider near-bottom when within 140px of the end (tweakable)
+          if (scrollY + vh >= docH - 140) {
+            document.body.classList.add("footer-visible");
+          } else {
+            document.body.classList.remove("footer-visible");
+          }
+        }
+
+        window.addEventListener("scroll", throttle(checkFooter, 120));
+        window.addEventListener("resize", throttle(checkFooter, 200));
+        // initial check
+        checkFooter();
       })();
     </script>
   </body>

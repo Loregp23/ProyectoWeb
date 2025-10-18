@@ -1,5 +1,6 @@
 :root {
   --header-height: 64px; /* mobile-first default */
+  --footer-height: 56px; /* default footer height for mobile */
 }
 
 header {
@@ -8,9 +9,81 @@ header {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background: #fff;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+}
+
+/* Use Raleway for all header elements */
+header,
+header * {
+  font-family: "Raleway", sans-serif;
+}
+
+/* Specific tweak for analysis page: move 'Volver' to top-left */
+body.analysis-page header nav {
+  justify-content: flex-start;
+  padding-left: 2.5rem; /* increased left offset (>= double) */
+}
+body.analysis-page header nav ul {
+  display: block; /* keep the link simple and aligned left */
+}
+body.analysis-page header nav ul li {
+  margin-right: 0;
+}
+body.analysis-page header nav ul li a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+}
+
+/* SOW index: brand on the left, nav items on the right */
+body.sow-index header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+body.sow-index header nav .sow-brand {
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-left: 6rem; /* quadrupled left offset as requested */
+  margin-right: 6rem; /* keep large right gap */
+  display: inline-block;
+}
+body.sow-index header nav ul {
+  margin-left: auto; /* push nav to the right */
+  margin-right: 6rem; /* inset nav block from the right edge to match brand spacing */
+}
+
+@media (min-width: 768px) {
+  body.sow-index header nav ul {
+    margin-right: 8rem; /* larger inset on desktop */
+  }
+}
+
+@media (min-width: 768px) {
+  body.analysis-page header nav {
+    padding-left: 4rem; /* larger left offset on desktop */
+  }
+}
+
+/* Title shown in header for analysis page */
+body.analysis-page header .analysis-header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  transform-origin: center;
+  transform: translateX(-50%) translateY(-50%);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
 }
 
 nav {
@@ -38,11 +111,27 @@ body {
   background-color: azure;
 }
 
+/* Footer is hidden by default; reserve space only when footer is shown */
+/* keep background/color on body separate above */
+body.footer-visible {
+  padding-bottom: var(--footer-height);
+}
+
 section {
   height: 90vh;
 }
 html {
   scroll-behavior: smooth;
+}
+/* Ensure full-height context so footer can be pushed to bottom */
+html,
+body {
+  height: 100%;
+}
+
+/* let main grow to fill available space under the fixed header */
+main {
+  flex: 1 0 auto;
 }
 nav ul li a:hover,
 nav ul li a:focus {
@@ -56,17 +145,67 @@ nav ul li a:focus {
   justify-content: center;
   align-items: center;
   min-height: 70vh;
-  height: 100vh;
+  height: auto;
   width: 100%;
-  background: rgba(255, 255, 255, 0.14);
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.19);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #000000;
   padding: 4vh 4vw;
   box-sizing: border-box;
-  margin-bottom: 2.5rem; /* space after cover on mobile */
+  margin-bottom: 5rem; /* original mobile spacing after cover */
+  position: relative; /* establish stacking context for overlay */
+}
+
+/* Rainbow gradient glass overlay for the cover (low opacity) */
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0; /* sit under content */
+  /* neutral translucent wash (no rainbow) */
+  background: rgba(255, 255, 255, 0.02);
+  mix-blend-mode: normal;
+}
+
+/* Ensure direct children (title) stay above the overlay */
+.cover > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile tweaks: reduce large vertical gaps introduced by full-height sections */
+@media (max-width: 767px) {
+  /* sections should size to content on small screens */
+  section {
+    height: auto !important;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* make the cover less tall on small devices */
+  .cover {
+    min-height: 56vh;
+    margin-bottom: 1.5rem;
+    padding: 3vh 4vw;
+  }
+
+  /* reduce spacing between site blocks */
+  .site-split {
+    margin-top: 0.75rem;
+    padding: 0 0.75rem;
+  }
+
+  /* tighten analysis page spacing on mobile */
+  .analysis-section {
+    padding: 2rem 1rem !important;
+  }
 }
 
 /* add extra gap before section headings (like Awwwards) */
@@ -77,7 +216,7 @@ main section h2 {
 /* larger gap on wider screens */
 @media (min-width: 768px) {
   .cover {
-    margin-bottom: 4.5rem;
+    margin-bottom: 9rem; /* original desktop spacing after cover */
   }
   main section h2 {
     margin-top: 1.5rem;
@@ -168,6 +307,31 @@ main section h2 {
   font-weight: 700; /* make the cover title stand out */
 }
 
+/* Main page H2 titles: uppercase and Poppins bold */
+body.sow-index main h2,
+body.sow-index h2 {
+  text-transform: uppercase;
+  font-family: "Poppins", "Raleway", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  /* roughly 3x larger than before: fluid between 3rem and 3.75rem */
+  font-size: clamp(3rem, 7.5vw, 3.75rem);
+  line-height: 1;
+  /* make top and bottom margins twice the font-size (2em) */
+  margin: 2em 0;
+}
+
+/* Make the analysis intro title match the main H2 size and style */
+.analysis-intro h2.rainbow {
+  text-transform: uppercase;
+  font-family: "Poppins", "Raleway", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: clamp(3rem, 7.5vw, 3.75rem);
+  line-height: 1;
+  margin: 2em 0;
+}
+
 h1 {
   margin: 0;
   padding: 0;
@@ -191,6 +355,43 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
+}
+
+/* Shadow box and rainbow color animation for headings */
+.rainbow {
+  /* only animate color; preserve font metrics so positions don't change */
+  font-size: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  animation: colorRotate 6s linear 0s infinite;
+  /* subtle dark glow for legibility on light backgrounds */
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.134);
+  filter: drop-shadow(0 2px 3px rgba(161, 161, 161, 0.308));
+}
+
+/* Larger cover title when rainbow class applied */
+.cover .title.rainbow {
+  font-size: clamp(3.5rem, 9vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+@keyframes colorRotate {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
 }
 
 .poppins-regular {
@@ -261,15 +462,28 @@ h1 {
 
 /* Analysis page: alternating media + content list */
 .analysis-section {
-  max-width: 1200px;
+  max-width: 2000px; /* much wider so text lines are significantly longer on large desktops */
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .analysis-list {
   margin-top: 1.5rem;
 }
 .analysis-item {
-  padding: 1.25rem 0;
+  padding: 3.5rem 0;
   box-sizing: border-box;
+}
+
+/* center the intro block vertically between the header and the first item */
+.analysis-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
 }
 .analysis-item .inner {
   display: flex;
@@ -288,7 +502,7 @@ h1 {
 }
 .analysis-item .inner {
   display: flex;
-  gap: 0.5rem;
+  gap: 0; /* remove gap to bring text flush to the image edge */
   align-items: center;
   width: 100%;
   box-sizing: border-box;
@@ -314,8 +528,33 @@ h1 {
 }
 .analysis-item .content {
   flex: 1 1 45%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem; /* reduce padding further to tighten gap */
   box-sizing: border-box;
+}
+.analysis-item .content {
+  /* Glass card effect (from https://css.glass) */
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem; /* inner padding for card content */
+}
+
+/* Slightly different treatment on small screens to avoid heavy blur */
+@media (max-width: 899px) {
+  .analysis-item .content {
+    /* small-screen glass: lighter tint and no backdrop blur for performance */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 12px;
+    padding: 0.75rem;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
 }
 .analysis-item .content h2 {
   margin-top: 0;
@@ -338,28 +577,30 @@ h1 {
     flex-direction: row-reverse;
   }
   .analysis-item .media {
-    flex: 0 0 60%;
+    flex: 0 0 52%;
     display: flex;
     justify-content: center;
   }
   .analysis-item .content {
-    flex: 1 1 40%;
+    flex: 1 1 48%;
+    /* allow the content column to be much wider on large screens */
+    max-width: 90ch; /* much wider line length for testing */
   }
   /* ensure a slight peek of previous/next */
   .analysis-item {
     padding: 2rem 0;
   }
-  /* make images match the iframe sizing used on the main page (same as .site-embed) */
+  /* make images larger as requested */
   .analysis-item .media img {
-    width: min(1200px, 65vw);
-    min-height: 360px;
+    width: min(1600px, 85vw);
+    min-height: 480px;
   }
 }
 
 /* Stretch images to viewport edges: calculate frame width and offset, then shift image left/right */
 @media (min-width: 768px) {
   :root {
-    --analysis-frame-width: min(1200px, 65vw);
+    --analysis-frame-width: min(1600px, 85vw);
   }
   .analysis-list {
     --frame-w: var(--analysis-frame-width);
@@ -368,12 +609,12 @@ h1 {
 
   /* odd items: image on left -> shift image left to touch viewport left edge */
   .analysis-item:nth-child(odd) .media img {
-    margin-left: calc(var(--side-gap) * -1);
+    margin-left: calc(var(--side-gap) * -1.25); /* push further */
     margin-right: 0;
   }
   /* even items: image on right -> shift image right to touch viewport right edge */
   .analysis-item:nth-child(even) .media img {
-    margin-right: calc(var(--side-gap) * -1);
+    margin-right: calc(var(--side-gap) * -1.25); /* push further */
     margin-left: 0;
   }
   /* ensure overflow visible so images can stick out */
@@ -383,14 +624,18 @@ h1 {
   }
 }
 
-/* Active item styling */
+/* Active item styling
+   NOTE: user requested removing the blue highlight that appears while
+   scrolling. Keep the .active class for JS state but remove visual
+   emphasis so items aren't marked in blue when scrolled into view. */
 .analysis-item.active .content {
-  background: rgba(0, 122, 204, 0.04);
-  border-left: 4px solid #007acc;
+  background: transparent; /* no blue tint on active */
+  border-left: none; /* remove left accent */
+  box-shadow: none; /* remove any subtle shadow change */
 }
 .analysis-item:nth-child(even).active .content {
   border-left: none;
-  border-right: 4px solid #007acc;
+  border-right: none; /* remove right accent for even items */
 }
 
 /* Small screens: stack media above content */
@@ -428,6 +673,32 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-weight: 900;
   font-style: italic;
+}
+
+/* Raleway utility classes (descriptive names) */
+.raleway-light {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+.raleway-regular {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.raleway-medium {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.raleway-bold {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* Cool infinite background scrolling animation.
@@ -477,6 +748,10 @@ h1 {
 }
 /* Main styles */
 body {
+  /* ensure page uses column flex so footer can be pushed to bottom */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   /* reserve space for fixed header */
   padding-top: var(--header-height);
   color: rgb(0, 0, 0);
@@ -507,6 +782,36 @@ body {
 @media (min-width: 1200px) {
   :root {
     --header-height: 88px;
+  }
+}
+
+/* Fixed footer: ensure it sits at bottom of viewport without overlapping content */
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--footer-height);
+  line-height: var(--footer-height);
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+/* Slightly larger footer on wide screens */
+@media (min-width: 768px) {
+  :root {
+    --footer-height: 64px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --footer-height: 72px;
   }
 }
 
@@ -564,6 +869,8 @@ button,
   font-size: inherit;
   font-family: inherit;
 }
+
+/* (button color tweaks removed — restored to original styles below) */
 
 /* make sure poppins utility classes apply the actual font-family
    (in case another stylesheet resets fonts) */
