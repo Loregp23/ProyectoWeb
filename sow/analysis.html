@@ -23,9 +23,119 @@
       </nav>
     </header>
     <main>
+      <!-- Decorative SVG removed per user request -->
       <section class="analysis-section" style="padding: 3rem 2rem">
         <div class="analysis-intro">
-          <h2 class="rainbow">Análisis visual — Galería</h2>
+          <h2 class="rainbow text-xl">Análisis visual — Galería</h2>
+        </div>
+        <!-- Texto de análisis: fluye en columnas responsivas -->
+        <div class="analysis-description">
+          <p>
+            A continuación, un texto descriptivo en columnas responsivas. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed sem
+            vitae urna fermentum convallis. Integer sit amet sapien eget mauris
+            faucibus bibendum. Praesent in leo sit amet lectus tempor rhoncus id
+            vitae mi. Proin vehicula, nulla a iaculis volutpat, nibh nunc
+            faucibus urna, et feugiat nibh orci in lorem. Aenean euismod, nisi
+            id facilisis convallis, arcu velit bibendum tortor, vel gravida arcu
+            lacus sed mauris. Sed condimentum, sapien vitae volutpat gravida,
+            lorem lacus luctus neque, ac consequat dolor odio ut mauris.
+          </p>
+          <p>
+            Fusce eu neque eu lorem lacinia faucibus. Aliquam erat volutpat.
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Integer ac mi at orci facilisis
+            pellentesque. Duis vitae eros eu mi cursus vulputate. Integer nec
+            porta nisl. Integer luctus, ipsum a interdum dapibus, mauris arcu
+            tincidunt libero, vitae cursus nisl sapien sit amet arcu.
+          </p>
+        </div>
+        <!-- Screenshot marquee/grid gallery: single row that auto-scrolls horizontally -->
+        <div
+          class="screenshot-marquee"
+          aria-label="Galería de capturas automáticas"
+        >
+          <div class="marquee-row">
+            <div class="marquee-scroller">
+              <div class="marquee-track">
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=11"
+                    alt="captura 1"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=12"
+                    alt="captura 2"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=13"
+                    alt="captura 3"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=14"
+                    alt="captura 4"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=15"
+                    alt="captura 5"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=16"
+                    alt="captura 6"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=17"
+                    alt="captura 7"
+                  />
+                </figure>
+                <figure class="shot">
+                  <img
+                    src="https://picsum.photos/640/380?random=18"
+                    alt="captura 8"
+                  />
+                </figure>
+              </div>
+              <!-- duplicated track for seamless loop -->
+              <div class="marquee-track" aria-hidden="true">
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=11" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=12" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=13" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=14" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=15" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=16" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=17" alt="" />
+                </figure>
+                <figure class="shot">
+                  <img src="https://picsum.photos/640/380?random=18" alt="" />
+                </figure>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="analysis-list" id="analysisList">
           <!-- 13 items: media + content -->
@@ -381,5 +491,377 @@
     <footer>
       <p>© 2025 Web Atelier (UDIT)</p>
     </footer>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+      // Page-level ScrollReveal initializer: reveal header, intro, description,
+      // marquee, each .analysis-item and footer. Uses interval + distance.
+      (function () {
+        if (typeof ScrollReveal === "undefined") return;
+
+        var sr = ScrollReveal({
+          reset: true,
+        });
+
+        // helper to add pre-blur class to elements before animation
+        function preBlur(selectors) {
+          document.querySelectorAll(selectors).forEach(function (el) {
+            el.classList.add("sr-pre");
+          });
+        }
+
+        // Basic reveal for header and intro (apply pre-blur then reveal)
+        preBlur("header");
+        sr.reveal("header", {
+          origin: "top",
+          distance: "20px",
+          duration: 600,
+          opacity: 0,
+          interval: 80,
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        });
+
+        preBlur(".analysis-intro h2");
+        sr.reveal(".analysis-intro h2", {
+          origin: "bottom",
+          distance: "12px",
+          duration: 700,
+          opacity: 0,
+          interval: 80,
+          delay: 150,
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        });
+
+        // paragraphs: make them slightly slower / delayed
+        preBlur(".analysis-description p");
+        sr.reveal(".analysis-description p", {
+          origin: "bottom",
+          distance: "8px",
+          duration: 750,
+          opacity: 0,
+          interval: 80,
+          delay: 220,
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        });
+
+        // marquee and other blocks
+        preBlur(".screenshot-marquee");
+        sr.reveal(".screenshot-marquee", {
+          origin: "left",
+          distance: "24px",
+          duration: 800,
+          opacity: 0,
+          delay: 300,
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        });
+
+        // Reveal each analysis item with a stagger and internal delay for text
+        preBlur(".analysis-item");
+        sr.reveal(".analysis-item", {
+          origin: "bottom",
+          distance: "18px",
+          duration: 800,
+          opacity: 0,
+          interval: 180,
+          delay: 200,
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        });
+
+        // Footer
+        preBlur("footer");
+        sr.reveal("footer", {
+          origin: "bottom",
+          distance: "10px",
+          duration: 600,
+          delay: 500,
+          opacity: 0,
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        });
+      })();
+    </script>
+    <script>
+      // JS marquee: drive the marquee using requestAnimationFrame to avoid
+      // being throttled on scroll in some browsers. Respects prefers-reduced-motion.
+      (function () {
+        if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          return; // don't animate if user prefers reduced motion
+        }
+
+        var scroller = document.querySelector(
+          ".screenshot-marquee .marquee-scroller"
+        );
+        if (!scroller) return;
+
+        // Compute total width of one track (assumes two .marquee-track children)
+        var track = scroller.querySelector(".marquee-track");
+        if (!track) return;
+
+        var imgs = Array.from(track.querySelectorAll("img"));
+
+        // Wait for all images in the first track to load (or timeout)
+        function imagesLoaded(images, timeout) {
+          return new Promise(function (resolve) {
+            var count = images.length;
+            if (!count) return resolve();
+            var done = false;
+            var timer = setTimeout(function () {
+              if (done) return;
+              done = true;
+              resolve();
+            }, timeout || 3000);
+            images.forEach(function (img) {
+              if (img.complete && img.naturalWidth) {
+                count--; // already loaded
+                if (count === 0 && !done) {
+                  clearTimeout(timer);
+                  done = true;
+                  resolve();
+                }
+              } else {
+                img.addEventListener("load", function () {
+                  count--;
+                  if (count === 0 && !done) {
+                    clearTimeout(timer);
+                    done = true;
+                    resolve();
+                  }
+                });
+                img.addEventListener("error", function () {
+                  count--;
+                  if (count === 0 && !done) {
+                    clearTimeout(timer);
+                    done = true;
+                    resolve();
+                  }
+                });
+              }
+            });
+          });
+        }
+
+        imagesLoaded(imgs, 5000).then(function () {
+          // measure width of first track
+          var firstTrackWidth = Math.round(track.getBoundingClientRect().width);
+          // set scroller explicit width to avoid layout shifts (two tracks back-to-back)
+          scroller.style.width = firstTrackWidth * 2 + "px";
+
+          var speed = 60; // pixels per second
+          var pos = 0;
+          var last = null;
+
+          function step(timestamp) {
+            if (!last) last = timestamp;
+            var dt = (timestamp - last) / 1000;
+            last = timestamp;
+            pos += speed * dt;
+
+            // wrap with modulo for continuous seamless loop
+            var x = pos % firstTrackWidth;
+            scroller.style.transform = "translate3d(" + -x + "px,0,0)";
+            raf = requestAnimationFrame(step);
+          }
+
+          var raf = requestAnimationFrame(step);
+
+          // Recalculate on resize to avoid jumps
+          var resizeTimeout;
+          window.addEventListener("resize", function () {
+            cancelAnimationFrame(raf);
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function () {
+              pos = 0;
+              last = null;
+              // remeasure
+              firstTrackWidth = Math.round(track.getBoundingClientRect().width);
+              scroller.style.width = firstTrackWidth * 2 + "px";
+              raf = requestAnimationFrame(step);
+            }, 150);
+          });
+        });
+      })();
+    </script>
+    <script>
+      // Per-character H2 animation: split main H2 and each .analysis-item h2 into chars
+      // then animate with WAAPI to mimic animejs splitText + animate + stagger with bounce and looping.
+      (function () {
+        var groups = [
+          {
+            selector: ".analysis-intro .text-xl",
+            params: {
+              stagger: 50,
+              duration: 1400,
+              // intro: larger rise
+              translate: "24px",
+              rotateFrom: -360,
+              loopDelay: 1000,
+            },
+          },
+          {
+            // apply to all h2 inside main except the intro (which uses .text-xl)
+            selector: "main h2:not(.text-xl)",
+            params: {
+              stagger: 40,
+              duration: 1000,
+              // item and other h2s: smaller rise
+              translate: "14px",
+              rotateFrom: -270,
+              loopDelay: 700,
+            },
+          },
+        ];
+
+        function splitToChars(el) {
+          if (!el || el.dataset.charsSplit === "1") return;
+          var raw = el.textContent || "";
+          if (!raw.trim()) return;
+          var chars = raw.replace(/\s+/g, " ").split("");
+          el.innerHTML = "";
+          el.classList.add("h2-anim");
+          chars.forEach(function (c) {
+            var span = document.createElement("span");
+            span.className = "char";
+            span.textContent = c;
+            el.appendChild(span);
+          });
+          el.dataset.charsSplit = "1";
+        }
+
+        function animateGroup(root, opts) {
+          var nodes = Array.from(root.querySelectorAll(".char"));
+          if (!nodes.length) return;
+
+          var stagger = opts.stagger || 50;
+          var duration = opts.duration || 1200;
+          var translate = opts.translate || "-2rem";
+          var rotateFrom = opts.rotateFrom || -360;
+          var loopDelay = opts.loopDelay || 800;
+
+          function run() {
+            nodes.forEach(function (node, i) {
+              var kf = [
+                {
+                  transform:
+                    "translateY(" +
+                    translate +
+                    ") rotate(" +
+                    rotateFrom +
+                    "deg)",
+                  opacity: 0,
+                  offset: 0,
+                },
+                {
+                  transform:
+                    "translateY(" +
+                    parseFloat(translate) * -0.2 +
+                    "px) rotate(" +
+                    rotateFrom * 0.06 +
+                    "deg)",
+                  opacity: 1,
+                  offset: 0.7,
+                },
+                {
+                  transform: "translateY(0) rotate(0deg)",
+                  opacity: 1,
+                  offset: 1,
+                },
+              ];
+              // approximate bounce with keyframe offsets
+              setTimeout(function () {
+                try {
+                  var anim = node.animate(kf, {
+                    duration: duration,
+                    easing: "cubic-bezier(.2,.9,.3,1)",
+                    fill: "forwards",
+                  });
+                  // nothing extra on finish; let loop manage
+                } catch (e) {}
+              }, i * stagger);
+            });
+
+            var total = duration + nodes.length * stagger + loopDelay;
+            // after total, cancel current animations and restart
+            setTimeout(function () {
+              nodes.forEach(function (n) {
+                n.getAnimations().forEach(function (a) {
+                  a.cancel();
+                });
+                n.style.transform = "";
+                n.style.opacity = "";
+              });
+              run();
+            }, total);
+          }
+
+          // kickoff with a small delay so page paints first
+          setTimeout(run, 600 + Math.random() * 200);
+        }
+
+        // Split all targets first
+        groups.forEach(function (g) {
+          Array.from(document.querySelectorAll(g.selector)).forEach(function (
+            el
+          ) {
+            splitToChars(el);
+          });
+        });
+
+        // Start animations for each matched element with its params
+        groups.forEach(function (g) {
+          Array.from(document.querySelectorAll(g.selector)).forEach(function (
+            el
+          ) {
+            animateGroup(el, g.params);
+          });
+        });
+      })();
+    </script>
+
+    <!-- SVG animation removed per user request -->
+
+    <script src="../assets/js/main.js"></script>
   </body>
 </html>

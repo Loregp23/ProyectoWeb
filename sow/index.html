@@ -332,5 +332,47 @@
         checkFooter();
       })();
     </script>
+    <script src="../assets/js/h2-split-anim.js"></script>
+    <script>
+      (function () {
+        // Respect reduced motion
+        var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (mq && mq.matches) return;
+
+        var title = document.querySelector(".cover .title");
+        if (!title) return;
+
+        // Wait for fonts/render
+        function whenReady(cb) {
+          if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(cb);
+            // also fallback timeout
+            setTimeout(cb, 600);
+          } else {
+            setTimeout(cb, 80);
+          }
+        }
+
+        whenReady(function () {
+          var text = title.textContent.trim();
+          title.textContent = "";
+          var frag = document.createDocumentFragment();
+          for (var i = 0; i < text.length; i++) {
+            var ch = text[i];
+            var span = document.createElement("span");
+            span.className = "char";
+            span.textContent = ch === " " ? "\u00A0" : ch;
+            // stagger via inline style delay
+            span.style.animationDelay = i * 45 + "ms";
+            frag.appendChild(span);
+          }
+          title.appendChild(frag);
+          // trigger animation class after next frame
+          requestAnimationFrame(function () {
+            title.classList.add("animate-chars");
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

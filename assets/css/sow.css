@@ -329,7 +329,8 @@ body.sow-index h2 {
   letter-spacing: 0.08em;
   font-size: clamp(3rem, 7.5vw, 3.75rem);
   line-height: 1;
-  margin: 2em 0;
+  /* Keep a generous top gap but reduce the bottom margin to half for a tighter flow */
+  margin: 2em 0 0.5em 0;
 }
 
 h1 {
@@ -376,6 +377,67 @@ h1 {
   letter-spacing: 0.06em;
 }
 
+/* Simple fade-in for cover title */
+.cover .title {
+  opacity: 0;
+  animation: fadeIn 2s forwards ease-in;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover .title {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Per-letter animation helpers */
+.cover .title .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px); /* start lower so letters come from below */
+  will-change: transform, opacity;
+}
+
+.cover .title.animate-chars .char {
+  animation: charIn 680ms cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+}
+
+/* If the title is rainbow, also animate color on each character (in parallel) */
+.cover .title.rainbow.animate-chars .char {
+  /* charIn runs once (for entrance), colorRotate loops forever */
+  animation: charIn 680ms cubic-bezier(0.22, 0.9, 0.3, 1) forwards,
+    colorRotate 6s linear 0s infinite;
+}
+
+@keyframes charIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px); /* slight overshoot */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover .title .char {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @keyframes colorRotate {
   from {
     color: #6666ff;
@@ -397,6 +459,37 @@ h1 {
 .poppins-regular {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+
+  /* ScrollReveal helper classes: initial blurred state before reveal */
+  .sr-pre {
+    filter: blur(8px);
+    opacity: 0.85; /* slightly dim while blurred */
+    transition: filter 600ms cubic-bezier(0.2, 0.9, 0.3, 1), opacity 600ms ease;
+  }
+
+  /* When reveal removes blur, allow smooth unblur */
+  .sr-pre.sr-unblur {
+    filter: none;
+    opacity: 1;
+  }
+
+  /* Animation styles for per-character H2 animation (anime-like) */
+  .analysis-intro .text-xl {
+    font-size: 1.5rem;
+    color: currentColor;
+    letter-spacing: 0.06em;
+  }
+  .analysis-intro .text-xl .char {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  /* Animated heading characters used by the WAAPI/Anime-like script */
+  .h2-anim .char,
+  .analysis-item .char {
+    display: inline-block;
+    transform-origin: center bottom;
+  }
   font-style: normal;
 }
 
@@ -485,6 +578,130 @@ h1 {
   text-align: center;
   padding: 2rem 1rem;
 }
+
+/* Descriptive text that should flow in responsive columns on wide screens
+   Use CSS multicolumn for natural text flow; fallback to single column on small screens */
+.analysis-description {
+  max-width: 1200px;
+  /* bring the columns closer to the H2 title */
+  margin: 0.125rem auto 0 auto;
+  padding: 0 1rem;
+  text-align: left; /* readable column alignment */
+  color: #111;
+}
+.analysis-description p {
+  margin: 0 0 1rem 0;
+  line-height: 1.7;
+}
+
+@media (min-width: 900px) {
+  .analysis-description {
+    column-count: 2;
+    column-gap: 2.25rem; /* space between columns */
+    hyphens: auto;
+  }
+  .analysis-description p {
+    /* avoid breaking paragraphs between columns if short */
+    break-inside: avoid-column;
+  }
+}
+
+/* Screenshot marquee/grid gallery styles */
+.screenshot-marquee {
+  margin: 2rem 0 3rem 0;
+  width: 100vw; /* edge-to-edge */
+  padding: 0; /* remove inner page padding so it reaches edges */
+  box-sizing: border-box;
+}
+.screenshot-marquee .marquee-row {
+  position: relative;
+  overflow: hidden;
+  width: 100vw; /* match viewport width so it spans edge-to-edge */
+  margin: 0.5rem 0;
+}
+.screenshot-marquee .marquee-scroller {
+  display: flex; /* ensure duplicated tracks sit in a single horizontal row */
+  gap: 0;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: nowrap; /* prevent tracks from wrapping to next line */
+}
+.screenshot-marquee .marquee-track {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex: 0 0 auto; /* prevent tracks from shrinking/wrapping */
+  flex-wrap: nowrap; /* ensure shots inside a track don't wrap */
+  /* ensure track is wide enough; it will be duplicated in markup for seamless loop */
+}
+.screenshot-marquee .marquee-track[aria-hidden="true"] {
+  margin-left: 0;
+}
+.screenshot-marquee .shot {
+  flex: 0 0 auto;
+  /* slightly larger moving photos */
+  width: 260px;
+  min-width: 200px;
+  box-sizing: border-box;
+}
+.screenshot-marquee .marquee-track {
+  gap: 0.75rem;
+}
+.screenshot-marquee .marquee-track .shot,
+.screenshot-marquee .marquee-track figure {
+  margin: 0; /* remove default figure margins so tracks sit flush */
+  padding: 0;
+}
+.screenshot-marquee .shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* marquee animation: continuous right-to-left loop for a single row (duplicated track) */
+@keyframes marquee-loop {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* apply animation only on wide screens (where duplication makes sense) */
+@media (min-width: 900px) {
+  .screenshot-marquee .marquee-track {
+    will-change: transform;
+  }
+  /* animate the first track to move left; the duplicated second track creates the seamless loop */
+  /* animate the scroller itself so the duplicated track scrolls seamlessly */
+  .screenshot-marquee .marquee-row .marquee-scroller {
+    /* CSS animation disabled: JS will drive the motion for better control and to avoid throttling */
+    animation: none !important;
+    will-change: transform;
+  }
+  /* pause animations on hover/focus for accessibility */
+  .screenshot-marquee:hover .marquee-scroller,
+  .screenshot-marquee:focus-within .marquee-scroller {
+    animation-play-state: paused;
+  }
+  /* reduce number of visible shots on medium screens */
+  @media (min-width: 900px) and (max-width: 1199px) {
+    .screenshot-marquee .shot {
+      width: calc(33.333% - 0.66rem);
+    }
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .screenshot-marquee .marquee-track {
+    animation: none !important;
+  }
+}
 .analysis-item .inner {
   display: flex;
   gap: 1.5rem;
@@ -551,14 +768,9 @@ h1 {
     border-radius: 12px;
     padding: 0.75rem;
     backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   }
-}
-.analysis-item .content h2 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
 }
 
 /* Alternate media position for visual rhythm */
