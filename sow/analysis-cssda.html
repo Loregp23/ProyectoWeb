@@ -1,28 +1,974 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Análisis CSSDA - Placeholder</title>
-  <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="../assets/css/sow.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html">Volver</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section style="padding:4rem 2rem;">
-      <h1>Análisis CSSDA (borrador)</h1>
-      <p>Página placeholder para el análisis del sitio CSSDA.</p>
-    </section>
-  </main>
-  <footer>
-    <p>© 2025 Web Atelier (UDIT)</p>
-  </footer>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Análisis - OddCommon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Carattere&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sulphur+Point:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/index.css" />
+    <link rel="stylesheet" href="../assets/css/sow.css" />
+  </head>
+  <body class="analysis-page">
+    <!DOCTYPE html>
+    <html lang="es">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Análisis - OddCommon</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Carattere&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sulphur+Point:wght@300;400;700&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../assets/css/index.css" />
+        <link rel="stylesheet" href="../assets/css/sow.css" />
+      </head>
+      <body class="analysis-page">
+        <header>
+          <nav>
+            <span class="analysis-header-title">Ánalisis visual</span>
+            <ul>
+              <li><a href="index.html">Volver</a></li>
+            </ul>
+          </nav>
+        </header>
+        <main>
+          <!-- Decorative SVG removed per user request -->
+          <section class="analysis-section" style="padding: 3rem 2rem">
+            <div class="analysis-intro">
+              <h2 class="rainbow text-xl">SHIPS 50th Anniversary</h2>
+            </div>
+            <!-- Texto de análisis: fluye en columnas responsivas -->
+            <div class="analysis-description">
+              <p>
+                Los CSS Design Awards (CSS Awards) son uno de los
+                reconocimientos más importantes en el ámbito del diseño web a
+                nivel internacional. Premian la creatividad, la innovación y la
+                excelencia técnica en sitios web, valorando aspectos como diseño
+                visual, usabilidad, interacción y contenido. Los galardones se
+                otorgan tanto a profesionales independientes como a agencias, y
+                destacan proyectos que empujan los límites del diseño web
+                contemporáneo, incluyendo animaciones, efectos interactivos,
+                experiencias inmersivas y narrativas visuales innovadoras.
+                Además de la evaluación de un jurado profesional, los CSS Awards
+                suelen reconocer también el impacto de la experiencia del
+                usuario y la originalidad en la presentación de contenidos
+                digitales.
+              </p>
+              <p>
+                La web SHIPS 50th Anniversary, creada para conmemorar los 50
+                años de la marca japonesa de moda SHIPS, ha sido premiada en los
+                CSS Design Awards por su excepcional dirección artística y
+                experiencia inmersiva. A través de animaciones que evocan el
+                acto de coser y texturas inspiradas en tejidos reales, la página
+                rinde homenaje a la herencia artesanal y la elegancia atemporal
+                de la firma. Su diseño combina estética, storytelling y
+                tecnología de forma armónica, ofreciendo una navegación fluida y
+                sensorial que conecta emocionalmente con el usuario. El
+                reconocimiento proviene de su capacidad para traducir la
+                identidad de marca en una experiencia visual coherente y
+                sofisticada, que une tradición y modernidad con gran
+                sensibilidad.
+              </p>
+            </div>
+            <!-- Screenshot marquee/grid gallery: single row that auto-scrolls horizontally -->
+            <div
+              class="screenshot-marquee"
+              aria-label="Galería de capturas automáticas"
+            >
+              <div class="marquee-row">
+                <div class="marquee-scroller">
+                  <div class="marquee-track">
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=11"
+                        alt="captura 1"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=12"
+                        alt="captura 2"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=13"
+                        alt="captura 3"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=14"
+                        alt="captura 4"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=15"
+                        alt="captura 5"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=16"
+                        alt="captura 6"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=17"
+                        alt="captura 7"
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=18"
+                        alt="captura 8"
+                      />
+                    </figure>
+                  </div>
+                  <!-- duplicated track for seamless loop -->
+                  <div class="marquee-track" aria-hidden="true">
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=11"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=12"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=13"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=14"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=15"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=16"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=17"
+                        alt=""
+                      />
+                    </figure>
+                    <figure class="shot">
+                      <img
+                        src="https://picsum.photos/640/380?random=18"
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="analysis-list" id="analysisList">
+              <!-- 13 items: media + content -->
+              <!-- We'll alternate media position with CSS :nth-child -->
+
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://ik.imagekit.io/6g9vwtwyq/Captura%20web%204.png?updatedAt=1760803675054"
+                      alt="shot 1"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Impresión inicial</h2>
+                    <p>
+                      Al entrar en la web de SHIPS 50th Anniversary, la
+                      sensación inmediata es de elegancia y sofisticación, con
+                      una experiencia inmersiva que refleja la celebración de un
+                      aniversario especial. Las numerosas animaciones e
+                      interacciones están diseñadas con gran precisión, imitando
+                      acciones como coser y tejer, lo que conecta de manera
+                      directa con la temática de moda y productos de ropa. Estos
+                      movimientos son suaves, sofisticados y casi hipnóticos,
+                      logrando un efecto visual original y memorable que captura
+                      la atención del usuario desde el primer momento, invitando
+                      a explorar la narrativa y los productos con interés y
+                      curiosidad.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=11"
+                      alt="shot 2"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Estructura</h2>
+                    <p>
+                      La web de SHIPS 50th Anniversary presenta una arquitectura
+                      que combina narrativa visual y exposición de productos de
+                      manera fluida. El menú principal es discreto y
+                      minimalista, permitiendo acceder a las secciones
+                      esenciales sin distraer del contenido principal, mientras
+                      que la navegación se integra con el flujo de la página
+                      (con el scroll).
+                    </p>
+                    <p>
+                      El contenido se organiza en bloques secuenciales que
+                      mezclan imágenes de productos, que primeramente son
+                      ilustraciones hasta hacer un hover por encima de las
+                      mismas, animaciones de interacción ymarcos de los nombres
+                      de los productos, creando un recorrido visual y temático
+                      que guía al usuario a través de la historia de la marca y
+                      su colección de aniversario.
+                    </p>
+                    <p>
+                      Cada sección está diseñada para mantener el interés
+                      mediante interacciones dinámicascomo por ejemplo los
+                      textos imitan un texto cosido y al clicarlo, este se
+                      tacha, indicando donde te ubicas dentro de todo el
+                      contenido de la web.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=12"
+                      alt="shot 3"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Visual</h2>
+                    <p>
+                      Destaca una estética elegante y sofisticada, centrada en
+                      un fondo gris texturizado que recuerda a la tela, sobre el
+                      que se desarrollan las animaciones de costura y tejido.
+                      Este fondo aporta profundidad y coherencia con la temática
+                      de moda y confección. Los tonos azul marino se utilizan en
+                      ilustraciones, recuadros y textos, generando un contraste
+                      limpio y visualmente atractivo que dirige la atención
+                      hacia los elementos clave del contenido.
+                    </p>
+                    <p>
+                      La tipografía es serif, pero clara y refinada, aportando
+                      un tono más clásico, a la marca. Lo cuál esta justificado
+                      temáticamente, pues es un aniversario de una marca
+                      antigua(50 años), y la animacion de coser a mano que se
+                      representa en toda la web, es un concepto ya más anticuado
+                      pues ahora se hace casi todo por máquinas. En conjunto, la
+                      identidad visual transmite tradición y sofisticación,
+                      conectando la narrativa del aniversario con la calidad y
+                      el estilo de la marca, y creando una experiencia estética
+                      memorable y distintiva.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=13"
+                      alt="shot 4"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Interacción</h2>
+                    <p>
+                      La interacción en la web es uno de sus puntos más
+                      destacados. Cada desplazamiento activa animaciones fluidas
+                      que simulan el acto de coser o tejer en los textos,
+                      generando una sensación inmersiva y dinamismo sin saturar
+                      la experiencia.
+                    </p>
+                    <p>
+                      El scroll es vertical, pero está cuidadosamente
+                      sincronizado con las transiciones y los movimientos de los
+                      elementos, haciendo que el recorrido se sienta narrativo y
+                      progresivo. No hay elementos 3D como tal, pero las
+                      animaciones 2D de tejer consiguen una sensación de
+                      relieve.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=14"
+                      alt="shot 5"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Usabilidad</h2>
+                    <p>
+                      La web mantiene una estructura clara, accesible y
+                      funcional. La navegación es lineal y guiada por el scroll,
+                      lo que facilita seguir la narrativa sin perderse entre
+                      secciones. Cada bloque de contenido está bien delimitado,
+                      incluso recuadrado, con suficiente espacio en blanco y
+                      jerarquías visuales claras que ayudan a la comprensión.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=15"
+                      alt="shot 6"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Técnico</h2>
+                    <p>
+                      Desde el punto de vista técnico, la web de SHIPS 50th
+                      Anniversary demuestra un trabajo de optimización notable
+                      considerando la cantidad de animaciones y efectos visuales
+                      que contiene. Los recursos gráficos como las texturas de
+                      tela y las ilustraciones en azul marino están comprimidos
+                      y cargan de forma progresiva, permitiendo una experiencia
+                      fluida incluso en conexiones medias. Una evaluación
+                      mediante herramientas como Lighthouse muestra un
+                      rendimiento sólido en métricas de velocidad y estabilidad
+                      visual, especialmente en el First Contentful Paint y la
+                      interactividad.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=16"
+                      alt="shot 7"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Criterios de excelencia</h2>
+                    <p>
+                      En términos de diseño, presenta una composición refinada y
+                      coherente,donde cada detalle desde la textura del fondo
+                      hasta las animaciones de costura transmite el universo
+                      artesanal y elegante de la marca. Su UX está
+                      cuidadosamente pensada para ofrecer una experiencia
+                      fluida, intuitiva y narrativa, guiando al usuario a través
+                      de una historia visual y los productos sin necesidad de
+                      menús complejos.
+                    </p>
+                    <p>
+                      En el ámbito de la creatividad, las animaciones que
+                      simulan puntadas y hilos en movimiento son una metáfora
+                      visual potente y original, conectando el proceso de
+                      confección con la celebración del aniversario. Por último,
+                      el contenido, aunque breve(porqúe está centrado en los
+                      productos, pues de ello va la web), es preciso, visual y
+                      bien integrado dentro del diseño, priorizando la
+                      experiencia sensorial sobre la información textual.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=17"
+                      alt="shot 8"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Diseño</h2>
+                    <p>
+                      El diseño de la web de SHIPS 50th Anniversary es
+                      sobresaliente. Cada elemento visual está pensado con
+                      precisión para transmitir una sensación de sofisticación,
+                      cuidado artesanal y coherencia estética, creando un web
+                      estéticamente atractiva, funcional y con un gran
+                      storytelling.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=18"
+                      alt="shot 9"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Usabilidad</h2>
+                    <p>
+                      Esta web es altamente intuitiva, gracias a una navegación
+                      lineal a través del scroll vertical, sin necesidad de un
+                      menú complejo ni interrupciones. Los elementos
+                      interactivos responden con claridad y coherencia, dando
+                      feedback al usuario de qué pulsa o en que sección está.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=19"
+                      alt="shot 10"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Creatividad</h2>
+                    <p>
+                      La creatividad es uno de los pilares más fuertes de la
+                      web. La manera en que las animaciones simulan el proceso
+                      de costura y confección textil es una idea sumamente
+                      original y perfectamente alineada con el universo de la
+                      marca. Este enfoque convierte el recorrido por la página
+                      en una experiencia sensorial y narrativa, más que en una
+                      simple navegación informativa. Las microinteracciones que
+                      imitan puntadas, el uso de texturas que evocan telas
+                      reales y la integración fluida de ilustraciones en azul
+                      marino crean un lenguaje visual distintivo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=20"
+                      alt="shot 11"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Contenido</h2>
+                    <p>
+                      El contenido es conciso pero significativo, diseñado para
+                      complementar la experiencia visual sin sobrecargarla. Más
+                      que recurrir a textos extensos, la narrativa se construye
+                      a través de imágenes y textos que mencionan la categoría o
+                      el producto. En ese sentido, el contenido puede
+                      considerarse sustancioso en intención y significado,
+                      perfectamente equilibrado con la propuesta estética.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="analysis-item">
+                <div class="inner">
+                  <div class="media">
+                    <img
+                      src="https://picsum.photos/900/600?random=21"
+                      alt="shot 12"
+                    />
+                  </div>
+                  <div class="content">
+                    <h2>Conclusiones</h2>
+                    <p>
+                      La web destaca en el diseño narrativo para ser una tienda
+                      principalmente de ropa. Su mayor acierto radica en la
+                      capacidad de fusionar estética, técnica y simbolismo,
+                      transformando una campaña conmemorativa en una experiencia
+                      inmersiva y coherente con la identidad de la marca. La
+                      atención al detalle en las animaciones, el uso de texturas
+                      que evocan materiales reales y la paleta cromática sobria
+                      pero elegante refuerzan la sensación de exclusividad y
+                      tradición artesanal.
+                    </p>
+                    <p>
+                      Entre los principales takeaways, destaca la forma en que
+                      la web logra comunicar valores de marca sin depender del
+                      texto, confiando en el poder de las imagenes o las
+                      animaciones. Enseña cómo el diseño puede ser tanto
+                      narrativo como funcional.
+                    </p>
+                    <p>
+                      Como punto de mejora, el menú inferior de navegación es
+                      demasiado grande y en un lugar un poco inconveniente, lo
+                      que hace la experiencia un poco más difícil y rara para el
+                      usuario.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- removed 13th item to keep gallery at 12 items -->
+            </div>
+          </section>
+        </main>
+        <script>
+          // Sync active item using IntersectionObserver
+          (function () {
+            var items = Array.from(document.querySelectorAll(".analysis-item"));
+            if (!items.length) return;
+            var obs = new IntersectionObserver(
+              function (entries) {
+                entries.forEach(function (e) {
+                  if (e.isIntersecting && e.intersectionRatio > 0.45) {
+                    items.forEach(function (i) {
+                      i.classList.remove("active");
+                    });
+                    e.target.classList.add("active");
+                  }
+                });
+              },
+              { threshold: [0.45, 0.6] }
+            );
+            items.forEach(function (it) {
+              obs.observe(it);
+            });
+          })();
+        </script>
+        <script>
+          // Show footer only when user is near the page bottom
+          (function () {
+            var throttle = function (fn, wait) {
+              var t = null;
+              return function () {
+                if (t) return;
+                t = setTimeout(function () {
+                  t = null;
+                  fn();
+                }, wait);
+              };
+            };
+
+            function checkFooter() {
+              var scrollY = window.scrollY || window.pageYOffset;
+              var vh = Math.max(
+                document.documentElement.clientHeight || 0,
+                window.innerHeight || 0
+              );
+              var docH = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight
+              );
+              if (scrollY + vh >= docH - 140) {
+                document.body.classList.add("footer-visible");
+              } else {
+                document.body.classList.remove("footer-visible");
+              }
+            }
+
+            window.addEventListener("scroll", throttle(checkFooter, 120));
+            window.addEventListener("resize", throttle(checkFooter, 200));
+            // initial check
+            checkFooter();
+          })();
+        </script>
+        <footer>
+          <p>© 2025 Web Atelier (UDIT)</p>
+        </footer>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+          // Page-level ScrollReveal initializer: reveal header, intro, description,
+          // marquee, each .analysis-item and footer. Uses interval + distance.
+          (function () {
+            if (typeof ScrollReveal === "undefined") return;
+
+            var sr = ScrollReveal({
+              reset: true,
+            });
+
+            // helper to add pre-blur class to elements before animation
+            function preBlur(selectors) {
+              document.querySelectorAll(selectors).forEach(function (el) {
+                el.classList.add("sr-pre");
+              });
+            }
+
+            // Basic reveal for header and intro (apply pre-blur then reveal)
+            preBlur("header");
+            sr.reveal("header", {
+              origin: "top",
+              distance: "20px",
+              duration: 600,
+              opacity: 0,
+              interval: 80,
+              beforeReveal: function (el) {
+                el.classList.add("sr-unblur");
+                el.classList.remove("sr-pre");
+              },
+              beforeReset: function (el) {
+                el.classList.remove("sr-unblur");
+                el.classList.add("sr-pre");
+              },
+            });
+
+            preBlur(".analysis-intro h2");
+            sr.reveal(".analysis-intro h2", {
+              origin: "bottom",
+              distance: "12px",
+              duration: 700,
+              opacity: 0,
+              interval: 80,
+              delay: 150,
+              beforeReveal: function (el) {
+                el.classList.add("sr-unblur");
+                el.classList.remove("sr-pre");
+              },
+              beforeReset: function (el) {
+                el.classList.remove("sr-unblur");
+                el.classList.add("sr-pre");
+              },
+            });
+
+            // paragraphs: make them slightly slower / delayed
+            preBlur(".analysis-description p");
+            sr.reveal(".analysis-description p", {
+              origin: "bottom",
+              distance: "8px",
+              duration: 750,
+              opacity: 0,
+              interval: 80,
+              delay: 220,
+              beforeReveal: function (el) {
+                el.classList.add("sr-unblur");
+                el.classList.remove("sr-pre");
+              },
+              beforeReset: function (el) {
+                el.classList.remove("sr-unblur");
+                el.classList.add("sr-pre");
+              },
+            });
+
+            // marquee and other blocks
+            preBlur(".screenshot-marquee");
+            sr.reveal(".screenshot-marquee", {
+              origin: "left",
+              distance: "24px",
+              duration: 800,
+              opacity: 0,
+              delay: 300,
+              beforeReveal: function (el) {
+                el.classList.add("sr-unblur");
+                el.classList.remove("sr-pre");
+              },
+              beforeReset: function (el) {
+                el.classList.remove("sr-unblur");
+                el.classList.add("sr-pre");
+              },
+            });
+
+            // Reveal each analysis item with a stagger and internal delay for text
+            preBlur(".analysis-item");
+            sr.reveal(".analysis-item", {
+              origin: "bottom",
+              distance: "18px",
+              duration: 800,
+              opacity: 0,
+              interval: 180,
+              delay: 200,
+              beforeReveal: function (el) {
+                el.classList.add("sr-unblur");
+                el.classList.remove("sr-pre");
+              },
+              beforeReset: function (el) {
+                el.classList.remove("sr-unblur");
+                el.classList.add("sr-pre");
+              },
+            });
+
+            // Footer
+            preBlur("footer");
+            sr.reveal("footer", {
+              origin: "bottom",
+              distance: "10px",
+              duration: 600,
+              delay: 500,
+              opacity: 0,
+              beforeReveal: function (el) {
+                el.classList.add("sr-unblur");
+                el.classList.remove("sr-pre");
+              },
+              beforeReset: function (el) {
+                el.classList.remove("sr-unblur");
+                el.classList.add("sr-pre");
+              },
+            });
+          })();
+        </script>
+        <script>
+          // JS marquee: drive the marquee using requestAnimationFrame to avoid
+          // being throttled on scroll in some browsers. Respects prefers-reduced-motion.
+          (function () {
+            if (
+              window.matchMedia &&
+              window.matchMedia("(prefers-reduced-motion: reduce)").matches
+            ) {
+              return; // don't animate if user prefers reduced motion
+            }
+
+            var scroller = document.querySelector(
+              ".screenshot-marquee .marquee-scroller"
+            );
+            if (!scroller) return;
+
+            // Compute total width of one track (assumes two .marquee-track children)
+            var track = scroller.querySelector(".marquee-track");
+            if (!track) return;
+
+            var imgs = Array.from(track.querySelectorAll("img"));
+
+            // Wait for all images in the first track to load (or timeout)
+            function imagesLoaded(images, timeout) {
+              return new Promise(function (resolve) {
+                var count = images.length;
+                if (!count) return resolve();
+                var done = false;
+                var timer = setTimeout(function () {
+                  if (done) return;
+                  done = true;
+                  resolve();
+                }, timeout || 3000);
+                images.forEach(function (img) {
+                  if (img.complete && img.naturalWidth) {
+                    count--; // already loaded
+                    if (count === 0 && !done) {
+                      clearTimeout(timer);
+                      done = true;
+                      resolve();
+                    }
+                  } else {
+                    img.addEventListener("load", function () {
+                      count--;
+                      if (count === 0 && !done) {
+                        clearTimeout(timer);
+                        done = true;
+                        resolve();
+                      }
+                    });
+                    img.addEventListener("error", function () {
+                      count--;
+                      if (count === 0 && !done) {
+                        clearTimeout(timer);
+                        done = true;
+                        resolve();
+                      }
+                    });
+                  }
+                });
+              });
+            }
+
+            imagesLoaded(imgs, 5000).then(function () {
+              // measure width of first track
+              var firstTrackWidth = Math.round(
+                track.getBoundingClientRect().width
+              );
+              // set scroller explicit width to avoid layout shifts (two tracks back-to-back)
+              scroller.style.width = firstTrackWidth * 2 + "px";
+
+              var speed = 60; // pixels per second
+              var pos = 0;
+              var last = null;
+
+              function step(timestamp) {
+                if (!last) last = timestamp;
+                var dt = (timestamp - last) / 1000;
+                last = timestamp;
+                pos += speed * dt;
+
+                // wrap with modulo for continuous seamless loop
+                var x = pos % firstTrackWidth;
+                scroller.style.transform = "translate3d(" + -x + "px,0,0)";
+                raf = requestAnimationFrame(step);
+              }
+
+              var raf = requestAnimationFrame(step);
+
+              // Recalculate on resize to avoid jumps
+              var resizeTimeout;
+              window.addEventListener("resize", function () {
+                cancelAnimationFrame(raf);
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function () {
+                  pos = 0;
+                  last = null;
+                  // remeasure
+                  firstTrackWidth = Math.round(
+                    track.getBoundingClientRect().width
+                  );
+                  scroller.style.width = firstTrackWidth * 2 + "px";
+                  raf = requestAnimationFrame(step);
+                }, 150);
+              });
+            });
+          })();
+        </script>
+        <script>
+          // Per-character H2 animation: split main H2 and each .analysis-item h2 into chars
+          // then animate with WAAPI to mimic animejs splitText + animate + stagger with bounce and looping.
+          (function () {
+            var groups = [
+              {
+                selector: ".analysis-intro .text-xl",
+                params: {
+                  stagger: 50,
+                  duration: 1400,
+                  // intro: larger rise
+                  translate: "24px",
+                  rotateFrom: -360,
+                  loopDelay: 1000,
+                },
+              },
+              {
+                // apply to all h2 inside main except the intro (which uses .text-xl)
+                selector: "main h2:not(.text-xl)",
+                params: {
+                  stagger: 40,
+                  duration: 1000,
+                  // item and other h2s: smaller rise
+                  translate: "14px",
+                  rotateFrom: -270,
+                  loopDelay: 700,
+                },
+              },
+            ];
+
+            function splitToChars(el) {
+              if (!el || el.dataset.charsSplit === "1") return;
+              var raw = el.textContent || "";
+              if (!raw.trim()) return;
+              var chars = raw.replace(/\s+/g, " ").split("");
+              el.innerHTML = "";
+              el.classList.add("h2-anim");
+              chars.forEach(function (c) {
+                var span = document.createElement("span");
+                span.className = "char";
+                span.textContent = c;
+                el.appendChild(span);
+              });
+              el.dataset.charsSplit = "1";
+            }
+
+            function animateGroup(root, opts) {
+              var nodes = Array.from(root.querySelectorAll(".char"));
+              if (!nodes.length) return;
+
+              var stagger = opts.stagger || 50;
+              var duration = opts.duration || 1200;
+              var translate = opts.translate || "-2rem";
+              var rotateFrom = opts.rotateFrom || -360;
+              var loopDelay = opts.loopDelay || 800;
+
+              function run() {
+                nodes.forEach(function (node, i) {
+                  var kf = [
+                    {
+                      transform:
+                        "translateY(" +
+                        translate +
+                        ") rotate(" +
+                        rotateFrom +
+                        "deg)",
+                      opacity: 0,
+                      offset: 0,
+                    },
+                    {
+                      transform:
+                        "translateY(" +
+                        parseFloat(translate) * -0.2 +
+                        "px) rotate(" +
+                        rotateFrom * 0.06 +
+                        "deg)",
+                      opacity: 1,
+                      offset: 0.7,
+                    },
+                    {
+                      transform: "translateY(0) rotate(0deg)",
+                      opacity: 1,
+                      offset: 1,
+                    },
+                  ];
+                  // approximate bounce with keyframe offsets
+                  setTimeout(function () {
+                    try {
+                      var anim = node.animate(kf, {
+                        duration: duration,
+                        easing: "cubic-bezier(.2,.9,.3,1)",
+                        fill: "forwards",
+                      });
+                      // nothing extra on finish; let loop manage
+                    } catch (e) {}
+                  }, i * stagger);
+                });
+
+                var total = duration + nodes.length * stagger + loopDelay;
+                // after total, cancel current animations and restart
+                setTimeout(function () {
+                  nodes.forEach(function (n) {
+                    n.getAnimations().forEach(function (a) {
+                      a.cancel();
+                    });
+                    n.style.transform = "";
+                    n.style.opacity = "";
+                  });
+                  run();
+                }, total);
+              }
+
+              // kickoff with a small delay so page paints first
+              setTimeout(run, 600 + Math.random() * 200);
+            }
+
+            // Split all targets first
+            groups.forEach(function (g) {
+              Array.from(document.querySelectorAll(g.selector)).forEach(
+                function (el) {
+                  splitToChars(el);
+                }
+              );
+            });
+
+            // Start animations for each matched element with its params
+            groups.forEach(function (g) {
+              Array.from(document.querySelectorAll(g.selector)).forEach(
+                function (el) {
+                  animateGroup(el, g.params);
+                }
+              );
+            });
+          })();
+        </script>
+
+        <!-- SVG animation removed per user request -->
+
+        <script src="../assets/js/main.js"></script>
+      </body>
+    </html>
+  </body>
 </html>
