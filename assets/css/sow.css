@@ -621,8 +621,16 @@ h1 {
 
 /* Ensure strong in the analysis description stands out */
 .analysis-description strong {
-  font-weight: 800;
+  /* Override global p { font-weight: 400 !important } so strong shows bold */
+  font-weight: 800 !important;
   color: #111; /* match body text but ensure boldness */
+}
+
+/* Ensure bold also works inside the analysis items cards */
+.analysis-item .content strong,
+.analysis-item .content b {
+  font-weight: 800 !important;
+  color: inherit;
 }
 
 @media (min-width: 900px) {
