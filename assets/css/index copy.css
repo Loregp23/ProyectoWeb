@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @import url("http://meyerweb.com/eric/tools/css/reset/reset.css"); /* CSS Reset para compatibilidad entre navegadores */
-@import url(types.css);
 @import url("main.css"); /* Estilos principales */
 
 /* Global paragraph style: apply Montserrat site-wide */
