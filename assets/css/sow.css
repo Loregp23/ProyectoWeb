@@ -3,8 +3,7 @@
   --footer-height: 56px; /* default footer height for mobile */
 }
 
-/* Import Montserrat + Raleway for paragraph styling (used by .montserrat-analysis) */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+/* Montserrat + Raleway fonts are imported in HTML */
 
 /* Reusable Montserrat class for analysis paragraphs */
 .montserrat-analysis {
@@ -28,7 +27,6 @@ header {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -76,9 +74,6 @@ body.sow-index header nav ul {
   body.sow-index header nav ul {
     margin-right: 8rem; /* larger inset on desktop */
   }
-}
-
-@media (min-width: 768px) {
   body.analysis-page header nav {
     padding-left: 4rem; /* larger left offset on desktop */
   }
@@ -119,12 +114,15 @@ nav ul li a {
   color: #333;
 }
 
-body {
-  background-color: azure;
+/* Global layout */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Footer is hidden by default; reserve space only when footer is shown */
-/* keep background/color on body separate above */
+html, body {
+  height: 100%;
+}
+
 body.footer-visible {
   padding-bottom: var(--footer-height);
 }
@@ -132,16 +130,7 @@ body.footer-visible {
 section {
   height: 90vh;
 }
-html {
-  scroll-behavior: smooth;
-}
-/* Ensure full-height context so footer can be pushed to bottom */
-html,
-body {
-  height: 100%;
-}
 
-/* let main grow to fill available space under the fixed header */
 main {
   flex: 1 0 auto;
 }
@@ -365,23 +354,7 @@ h1 {
   width: auto;
 }
 
-.poppins-thin {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.poppins-extralight {
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-style: normal;
-}
-
-.poppins-light {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
+/* Unused Poppins utility classes removed for simplification */
 
 /* Shadow box and rainbow color animation for headings */
 .rainbow {
@@ -481,100 +454,38 @@ h1 {
   }
 }
 
-.poppins-regular {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
+/* Unused - removed for simplification */
 
-  /* ScrollReveal helper classes: initial blurred state before reveal */
-  .sr-pre {
-    filter: blur(8px);
-    opacity: 0.85; /* slightly dim while blurred */
-    transition: filter 600ms cubic-bezier(0.2, 0.9, 0.3, 1), opacity 600ms ease;
-  }
-
-  /* When reveal removes blur, allow smooth unblur */
-  .sr-pre.sr-unblur {
-    filter: none;
-    opacity: 1;
-  }
-
-  /* Animation styles for per-character H2 animation (anime-like) */
-  .analysis-intro .text-xl {
-    font-size: 1.5rem;
-    color: currentColor;
-    letter-spacing: 0.06em;
-  }
-  .analysis-intro .text-xl .char {
-    display: inline-block;
-    will-change: transform, opacity;
-  }
-
-  /* Animated heading characters used by the WAAPI/Anime-like script */
-  .h2-anim .char,
-  .analysis-item .char {
-    display: inline-block;
-    transform-origin: center bottom;
-  }
-  font-style: normal;
+/* ScrollReveal and animation helpers */
+.sr-pre {
+  filter: blur(8px);
+  opacity: 0.85;
+  transition: filter 600ms cubic-bezier(0.2, 0.9, 0.3, 1), opacity 600ms ease;
 }
 
-.poppins-medium {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+.sr-pre.sr-unblur {
+  filter: none;
+  opacity: 1;
 }
 
+.analysis-intro .text-xl {
+  font-size: 1.5rem;
+  color: currentColor;
+  letter-spacing: 0.06em;
+}
+
+/* Character animation classes for h2 removed - only cover title keeps animation */
+
+/* Keep only the actually used Poppins classes */
 .poppins-semibold {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;
 }
 
-.poppins-bold {
+.poppins-bold-italic {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-style: normal;
-}
-
-.poppins-extrabold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}
-
-.poppins-black {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.poppins-thin-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.poppins-extralight-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-style: italic;
-}
-
-.poppins-light-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.poppins-regular-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.poppins-medium-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
   font-style: italic;
 }
 
@@ -746,24 +657,19 @@ h1 {
     animation: none !important;
   }
 }
-.analysis-item .inner {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  width: 100%;
-  box-sizing: border-box;
-}
 .analysis-list {
   margin-top: 1.5rem;
   padding: 0;
 }
+
 .analysis-item {
   padding: 1.25rem 0;
   box-sizing: border-box;
 }
+
 .analysis-item .inner {
   display: flex;
-  gap: 0; /* remove gap to bring text flush to the image edge */
+  gap: 0;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
@@ -789,34 +695,29 @@ h1 {
 }
 .analysis-item .content {
   flex: 1 1 45%;
-  padding: 0.5rem 0.5rem; /* reduce padding further to tighten gap */
+  padding: 1rem; /* inner padding for card content */
   box-sizing: border-box;
-}
-.analysis-item .content {
   /* Glass card fill */
   background: rgba(255, 255, 255, 0.19);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  padding: 1rem; /* inner padding for card content */
   position: relative;
   z-index: 0;
   transition: box-shadow 0.18s ease, transform 0.18s ease;
-  /* border-image uses a conic-gradient to draw color only on the border
-     border thickness controls how thick the rainbow line appears */
+  /* Simplified rainbow border animation */
   --rain-angle: 0deg;
-  --rain-alpha: 0.45; /* transparency for the rainbow outline */
   border: 2px solid transparent;
   border-image: conic-gradient(
       from var(--rain-angle),
-      rgba(255, 0, 71, var(--rain-alpha)),
-      rgba(255, 122, 0, var(--rain-alpha)),
-      rgba(255, 209, 0, var(--rain-alpha)),
-      rgba(0, 210, 106, var(--rain-alpha)),
-      rgba(0, 179, 255, var(--rain-alpha)),
-      rgba(106, 0, 255, var(--rain-alpha)),
-      rgba(255, 0, 71, var(--rain-alpha))
+      rgba(255, 0, 71, 0.45),
+      rgba(255, 122, 0, 0.45),
+      rgba(255, 209, 0, 0.45),
+      rgba(0, 210, 106, 0.45),
+      rgba(0, 179, 255, 0.45),
+      rgba(106, 0, 255, 0.45),
+      rgba(255, 0, 71, 0.45)
     )
     1 round;
   animation: rainbow-rotate 6s linear infinite;
@@ -825,9 +726,12 @@ h1 {
 /* Smaller screen: lighter glass and slightly smaller radius */
 @media (max-width: 899px) {
   .analysis-item .content {
+    /* small-screen glass: lighter tint and no backdrop blur for performance */
+    background: rgba(255, 255, 255, 0.19);
     border-radius: 12px;
     padding: 0.75rem;
     backdrop-filter: none;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     animation: none; /* disable rotation on small screens */
     --rain-angle: 0deg;
@@ -848,18 +752,7 @@ h1 {
   }
 }
 
-/* Slightly different treatment on small screens to avoid heavy blur */
-@media (max-width: 899px) {
-  .analysis-item .content {
-    /* small-screen glass: lighter tint and no backdrop blur for performance */
-    background: rgba(255, 255, 255, 0.19);
-    border-radius: 12px;
-    padding: 0.75rem;
-    backdrop-filter: none;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-  }
-}
+/* Duplicate removed - properties consolidated into the media query above */
 
 /* Alternate media position for visual rhythm */
 @media (min-width: 768px) {
@@ -897,24 +790,21 @@ h1 {
   }
 }
 
-/* Stretch images to viewport edges: calculate frame width and offset, then shift image left/right */
+/* Stretch images to viewport edges: simplified calculation */
 @media (min-width: 768px) {
-  :root {
-    --analysis-frame-width: min(1600px, 85vw);
-  }
   .analysis-list {
-    --frame-w: var(--analysis-frame-width);
-    --side-gap: calc((100vw - var(--frame-w)) / 2);
+    --analysis-frame-width: min(1600px, 85vw);
+    --side-gap: calc((100vw - var(--analysis-frame-width)) / 2);
   }
 
   /* odd items: image on left -> shift image left to touch viewport left edge */
   .analysis-item:nth-child(odd) .media img {
-    margin-left: calc(var(--side-gap) * -1.25); /* push further */
+    margin-left: calc(var(--side-gap) * -1.25);
     margin-right: 0;
   }
   /* even items: image on right -> shift image right to touch viewport right edge */
   .analysis-item:nth-child(even) .media img {
-    margin-right: calc(var(--side-gap) * -1.25); /* push further */
+    margin-right: calc(var(--side-gap) * -1.25);
     margin-left: 0;
   }
   /* ensure overflow visible so images can stick out */
@@ -951,29 +841,7 @@ h1 {
   }
 }
 
-.poppins-semibold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.poppins-bold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.poppins-extrabold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
-  font-style: italic;
-}
-
-.poppins-black-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: italic;
-}
+/* Duplicate removed - already defined above */
 
 /* Raleway utility classes (descriptive names) */
 .raleway-light {
@@ -1001,48 +869,9 @@ h1 {
   font-style: normal;
 }
 
-/* Cool infinite background scrolling animation.
-/* Exo thin font from Google. */
-@import url(https://fonts.googleapis.com/css?family=Exo:100);
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
-/* Animations */
-@-webkit-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
-}
-@-moz-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
-}
-@-o-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
-}
+/* Background scrolling animation (simplified for modern browsers) */
 @keyframes bg-scrolling-reverse {
   100% {
-    background-position: 50px 50px;
-  }
-}
-@-webkit-keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
-}
-@-moz-keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
-}
-@-o-keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
-}
-@keyframes bg-scrolling {
-  0% {
     background-position: 50px 50px;
   }
 }
@@ -1056,32 +885,25 @@ body {
   padding-top: var(--header-height);
   color: rgb(0, 0, 0);
   text-align: center;
+  background-color: azure;
   /* img size is 50x50 */
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC")
-    repeat 0 0;
-  -webkit-animation: bg-scrolling-reverse 0.92s infinite;
-  /* Safari 4+ */
-  -moz-animation: bg-scrolling-reverse 0.92s infinite;
-  /* Fx 5+ */
-  -o-animation: bg-scrolling-reverse 0.92s infinite;
-  /* Opera 12+ */
-  animation: bg-scrolling-reverse 0.92s infinite;
-  /* IE 10+ */
-  -webkit-animation-timing-function: linear;
-  -moz-animation-timing-function: linear;
-  -o-animation-timing-function: linear;
-  animation-timing-function: linear;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8zWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC");
+  background-repeat: repeat;
+  background-position: 0 0;
+  animation: bg-scrolling-reverse 0.92s infinite linear;
 }
 
 /* Larger headers on wider screens */
 @media (min-width: 768px) {
   :root {
     --header-height: 72px;
+    --footer-height: 64px;
   }
 }
 @media (min-width: 1200px) {
   :root {
     --header-height: 88px;
+    --footer-height: 72px;
   }
 }
 
@@ -1102,18 +924,7 @@ footer {
   padding: 0 1rem;
 }
 
-/* Slightly larger footer on wide screens */
-@media (min-width: 768px) {
-  :root {
-    --footer-height: 64px;
-  }
-}
 
-@media (min-width: 1200px) {
-  :root {
-    --footer-height: 72px;
-  }
-}
 
 /* Give users the option to reduce motion */
 @media (prefers-reduced-motion: reduce) {
@@ -1176,35 +987,9 @@ button,
   font-family: inherit;
 }
 
-/* (button color tweaks removed — restored to original styles below) */
-
-/* make sure poppins utility classes apply the actual font-family
-   (in case another stylesheet resets fonts) */
-.poppins-thin,
-.poppins-extralight,
-.poppins-light,
-.poppins-regular,
-.poppins-medium,
-.poppins-semibold,
-.poppins-bold,
-.poppins-extrabold,
-.poppins-black,
-.poppins-thin-italic,
-.poppins-extralight-italic,
-.poppins-light-italic,
-.poppins-regular-italic,
-.poppins-medium-italic,
-.poppins-semibold-italic,
-.poppins-bold-italic,
-.poppins-extrabold-italic,
-.poppins-black-italic {
-  font-family: "Poppins", sans-serif !important;
-}
-
 .learn-more {
   width: 12rem;
   height: auto;
-  display: inline-block; /* ensure anchor behaves like button */
 }
 
 .learn-more .circle {
@@ -1255,9 +1040,9 @@ button,
   right: 0;
   bottom: 0;
   padding: 0.75rem 0;
-  margin: 0 0 0 0.15rem; /* tighter to the arrow */
+  margin: 0 0 0 0.15rem;
   color: #282936;
-  font-weight: 700; /* back to bold as requested */
+  font-weight: 700;
   line-height: 1.6;
   text-align: center;
   text-transform: uppercase;
@@ -1279,7 +1064,7 @@ button:hover .button-text,
   color: #fff;
 }
 
-/* fallback when iframe cannot display (CSP / X-Frame-Options blocking) */
+/* Embed fallback styles */
 .embed-fallback {
   display: none;
   padding: 1rem;
@@ -1287,27 +1072,27 @@ button:hover .button-text,
   background: rgba(255, 255, 255, 0.02);
   border-radius: 6px;
 }
+
 .embed-fallback p {
   margin: 0 0 0.5rem 0;
   color: #222;
 }
+
 .embed-fallback .embed-open {
   color: #007acc;
   text-decoration: none;
   font-weight: 600;
 }
-.site-embed[aria-hidden="true"] {
-  display: none;
-}
 
-/* force thumbnail mode: hide iframe, show fallback thumbnail */
+.site-embed[aria-hidden="true"],
 .site-embed-wrapper.force-thumb .site-embed {
   display: none;
 }
+
 .site-embed-wrapper.force-thumb .embed-fallback {
   display: block;
 }
-/* make the fallback image match the iframe sizing and styling */
+
 .site-embed-wrapper.force-thumb .embed-fallback img {
   display: block;
   width: 100%;
@@ -1320,6 +1105,7 @@ button:hover .button-text,
   border-radius: 8px;
   background: #fff;
 }
+
 @media (min-width: 768px) {
   .site-embed-wrapper.force-thumb .embed-fallback img {
     width: min(1200px, 65vw);
