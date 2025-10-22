@@ -1,26 +1,32 @@
-:root {
-  --header-height: 64px; /* mobile-first default */
-  --footer-height: 56px; /* default footer height for mobile */
+/* Universal box-sizing for consistent layout */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Montserrat + Raleway fonts are imported in HTML */
+/* CSS custom properties for responsive layout */
+:root {
+  --header-height: 64px;
+  --footer-height: 56px;
+}
 
-/* Reusable Montserrat class for analysis paragraphs */
+/* Reusable font class for analysis content */
 .montserrat-analysis {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* standard weight; change to 100..900 as needed */
+  font-weight: 400;
   font-style: normal;
-  line-height: 1.6; /* adjusted interlineado: reduced as requested */
+  line-height: 1.6;
 }
 
+/* Fixed glass morphism header */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: var(--header-height);
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.19);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -30,19 +36,17 @@ header {
   z-index: 1000;
 }
 
-/* Use Raleway for all header elements */
+/* Consistent font for all header elements */
 header,
 header * {
   font-family: "Raleway", sans-serif;
 }
-
-/* Specific tweak for analysis page: move 'Volver' to top-left */
 body.analysis-page header nav {
   justify-content: flex-start;
-  padding-left: 2.5rem; /* increased left offset (>= double) */
+  padding-left: 2.5rem;
 }
 body.analysis-page header nav ul {
-  display: block; /* keep the link simple and aligned left */
+  display: block;
 }
 body.analysis-page header nav ul li {
   margin-right: 0;
@@ -52,7 +56,6 @@ body.analysis-page header nav ul li a {
   padding: 0.5rem 0.75rem;
 }
 
-/* SOW index: brand on the left, nav items on the right */
 body.sow-index header nav {
   display: flex;
   align-items: center;
@@ -61,31 +64,27 @@ body.sow-index header nav {
 body.sow-index header nav .sow-brand {
   font-weight: 800;
   font-size: 0.95rem;
-  margin-left: 6rem; /* quadrupled left offset as requested */
-  margin-right: 6rem; /* keep large right gap */
+  margin-left: 6rem;
+  margin-right: 6rem;
   display: inline-block;
 }
 body.sow-index header nav ul {
-  margin-left: auto; /* push nav to the right */
-  margin-right: 6rem; /* inset nav block from the right edge to match brand spacing */
+  margin-left: auto;
+  margin-right: 6rem;
 }
 
 @media (min-width: 768px) {
   body.sow-index header nav ul {
-    margin-right: 8rem; /* larger inset on desktop */
+    margin-right: 8rem;
   }
   body.analysis-page header nav {
-    padding-left: 4rem; /* larger left offset on desktop */
+    padding-left: 4rem;
   }
 }
-
-/* Title shown in header for analysis page */
 body.analysis-page header .analysis-header-title {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   top: 50%;
-  transform-origin: center;
   transform: translateX(-50%) translateY(-50%);
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -94,7 +93,7 @@ body.analysis-page header .analysis-header-title {
 }
 
 nav {
-  position: relative; /* header handles fixed positioning */
+  position: relative;
   height: 100%;
   display: flex;
   align-items: center;
@@ -114,12 +113,13 @@ nav ul li a {
   color: #333;
 }
 
-/* Global layout */
+/* Global layout and smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -140,7 +140,7 @@ nav ul li a:focus {
   outline: none;
 }
 
-/* Cover and typewriter (mobile-first) */
+/* Hero section with glass morphism effect */
 .cover {
   display: flex;
   justify-content: center;
@@ -148,7 +148,6 @@ nav ul li a:focus {
   min-height: 70vh;
   height: auto;
   width: 100%;
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.19);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -157,53 +156,46 @@ nav ul li a:focus {
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #000000;
   padding: 4vh 4vw;
-  box-sizing: border-box;
-  margin-bottom: 5rem; /* original mobile spacing after cover */
-  position: relative; /* establish stacking context for overlay */
+  margin-bottom: 5rem;
+  position: relative;
 }
 
-/* Rainbow gradient glass overlay for the cover (low opacity) */
+/* Subtle overlay for cover glass effect */
 .cover::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  z-index: 0; /* sit under content */
-  /* neutral translucent wash (no rainbow) */
+  z-index: 0;
   background: rgba(255, 255, 255, 0.02);
   mix-blend-mode: normal;
 }
 
-/* Ensure direct children (title) stay above the overlay */
+/* Ensure cover content appears above overlay */
 .cover > * {
   position: relative;
   z-index: 1;
 }
 
-/* Mobile tweaks: reduce large vertical gaps introduced by full-height sections */
 @media (max-width: 767px) {
-  /* sections should size to content on small screens */
   section {
     height: auto !important;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
 
-  /* make the cover less tall on small devices */
   .cover {
     min-height: 56vh;
     margin-bottom: 1.5rem;
     padding: 3vh 4vw;
   }
 
-  /* reduce spacing between site blocks */
   .site-split {
     margin-top: 0.75rem;
     padding: 0 0.75rem;
   }
 
-  /* tighten analysis page spacing on mobile */
   .analysis-section {
     padding: 2rem 1rem !important;
   }
@@ -214,35 +206,29 @@ main section h2 {
   margin-top: 0.5rem;
 }
 
-/* larger gap on wider screens */
 @media (min-width: 768px) {
   .cover {
-    margin-bottom: 9rem; /* original desktop spacing after cover */
+    margin-bottom: 9rem;
   }
   main section h2 {
     margin-top: 1.5rem;
   }
 }
 
-/* Split layout for preview + analysis */
+/* Two-column layout for site preview and analysis */
 .site-split {
-  display: block; /* stacked on mobile */
+  display: block;
   gap: 1rem;
-  margin-top: 1.5rem; /* increased spacing under the H2 (mobile-first) */
-  padding: 0 1rem; /* horizontal padding to give breathing room from page edges */
-  box-sizing: border-box;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
 }
 .site-split__left,
 .site-split__right {
-  box-sizing: border-box;
-  padding: 0; /* remove per-column padding to keep outer padding consistent */
+  padding: 0;
 }
 
-/* Move horizontal spacing so the text column starts further right.
-   We remove extra left padding from the left column and instead apply it
-   as left padding on the article (mobile-first). Desktop overrides increase it. */
 .site-split__left {
-  padding-left: 0.125rem; /* tiny inset for mobile */
+  padding-left: 0.125rem;
 }
 
 .site-embed-wrapper {
@@ -251,12 +237,9 @@ main section h2 {
   justify-content: center;
 }
 .site-embed {
-  /* prefer landscape: use aspect-ratio so width > height by default */
   width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  aspect-ratio: 16 / 9; /* default landscape ratio */
-  height: auto; /* let aspect-ratio control height */
+  aspect-ratio: 16 / 9;
+  height: auto;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   background: #fff;
@@ -264,30 +247,25 @@ main section h2 {
 }
 
 @media (min-width: 768px) {
-  /* use flex so the left column can size to the iframe intrinsic width */
   .site-split {
     display: flex;
     flex-wrap: nowrap;
-    /* stretch columns so right column can match iframe height */
     align-items: stretch;
-    gap: 1rem; /* reduce inter-column gap so text is closer to iframe */
-    margin-top: 4.5rem; /* larger gap on desktop */
-    padding: 0 4rem; /* larger horizontal padding on desktop */
+    gap: 1rem;
+    margin-top: 4.5rem;
+    padding: 0 4rem;
   }
-  /* left column won't force equal width; it will size to its content (iframe) */
   .site-split__left {
     flex: 0 0 auto;
     padding-left: 0;
     padding-right: 0;
   }
-  /* right side is flexible and will take remaining space */
   .site-split__right {
-    flex: 1 1 360px; /* allow vertical centering of its content */
+    flex: 1 1 360px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  /* desktop: prefer a wider iframe (landscape), limit maximum width */
   .site-embed {
     width: min(1200px, 65vw);
     aspect-ratio: 16 / 9;
@@ -354,9 +332,7 @@ h1 {
   width: auto;
 }
 
-/* Unused Poppins utility classes removed for simplification */
-
-/* Shadow box and rainbow color animation for headings */
+/* Animated rainbow text effect */
 .rainbow {
   /* only animate color; preserve font metrics so positions don't change */
   font-size: inherit;
@@ -454,9 +430,7 @@ h1 {
   }
 }
 
-/* Unused - removed for simplification */
-
-/* ScrollReveal and animation helpers */
+/* ScrollReveal blur-in animation states */
 .sr-pre {
   filter: blur(8px);
   opacity: 0.85;
@@ -474,24 +448,23 @@ h1 {
   letter-spacing: 0.06em;
 }
 
-/* Character animation classes for h2 removed - only cover title keeps animation */
-
-/* Keep only the actually used Poppins classes */
-.poppins-semibold {
+/* Poppins font utility classes */
+.poppins-semibold,
+.poppins-bold-italic {
   font-family: "Poppins", sans-serif;
+}
+.poppins-semibold {
   font-weight: 600;
   font-style: normal;
 }
-
 .poppins-bold-italic {
-  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: italic;
 }
 
-/* Analysis page: alternating media + content list */
+/* Main container for analysis page layout */
 .analysis-section {
-  max-width: 2000px; /* much wider so text lines are significantly longer on large desktops */
+  max-width: 2000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -499,10 +472,10 @@ h1 {
 }
 .analysis-list {
   margin-top: 1.5rem;
+  padding: 0;
 }
 .analysis-item {
   padding: 3.5rem 0;
-  box-sizing: border-box;
 }
 
 /* center the intro block vertically between the header and the first item */
@@ -526,18 +499,15 @@ h1 {
   color: #111;
 }
 .analysis-description p {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   line-height: 1.7;
 }
 
-/* Ensure strong in the analysis description stands out */
 .analysis-description strong {
-  /* Override global p { font-weight: 400 !important } so strong shows bold */
   font-weight: 800 !important;
-  color: #111; /* match body text but ensure boldness */
+  color: #111;
 }
 
-/* Ensure bold also works inside the analysis items cards */
 .analysis-item .content strong,
 .analysis-item .content b {
   font-weight: 800 !important;
@@ -556,17 +526,16 @@ h1 {
   }
 }
 
-/* Screenshot marquee/grid gallery styles */
+/* Horizontal scrolling gallery for screenshots */
 .screenshot-marquee {
-  margin: 3.5rem 0 4rem 0; /* increased top gap to separate from columns */
-  width: 100vw; /* edge-to-edge */
-  padding: 0; /* remove inner page padding so it reaches edges */
-  box-sizing: border-box;
+  margin: 3.5rem 0 4rem 0;
+  width: 100vw;
+  padding: 0;
 }
 .screenshot-marquee .marquee-row {
   position: relative;
   overflow: hidden;
-  width: 100vw; /* match viewport width so it spans edge-to-edge */
+  width: 100vw;
   margin: 0.5rem 0;
 }
 .screenshot-marquee .marquee-scroller {
@@ -592,14 +561,13 @@ h1 {
   /* slightly larger moving photos */
   width: 260px;
   min-width: 200px;
-  box-sizing: border-box;
 }
 .screenshot-marquee .marquee-track {
   gap: 0.75rem;
 }
 .screenshot-marquee .marquee-track .shot,
 .screenshot-marquee .marquee-track figure {
-  margin: 0; /* remove default figure margins so tracks sit flush */
+  margin: 0;
   padding: 0;
 }
 .screenshot-marquee .shot img {
@@ -611,32 +579,14 @@ h1 {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* marquee animation: continuous right-to-left loop for a single row (duplicated track) */
-@keyframes marquee-loop {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-/* apply animation only on wide screens (where duplication makes sense) */
+/* Enable marquee animation on desktop */
 @media (min-width: 900px) {
   .screenshot-marquee .marquee-track {
     will-change: transform;
   }
-  /* animate the first track to move left; the duplicated second track creates the seamless loop */
-  /* animate the scroller itself so the duplicated track scrolls seamlessly */
+  /* JavaScript-controlled marquee scroller */
   .screenshot-marquee .marquee-row .marquee-scroller {
-    /* CSS animation disabled: JS will drive the motion for better control and to avoid throttling */
-    animation: none !important;
     will-change: transform;
-  }
-  /* pause animations on hover/focus for accessibility */
-  .screenshot-marquee:hover .marquee-scroller,
-  .screenshot-marquee:focus-within .marquee-scroller {
-    animation-play-state: paused;
   }
   /* reduce number of visible shots on medium screens */
   @media (min-width: 900px) and (max-width: 1199px) {
@@ -657,22 +607,12 @@ h1 {
     animation: none !important;
   }
 }
-.analysis-list {
-  margin-top: 1.5rem;
-  padding: 0;
-}
-
-.analysis-item {
-  padding: 1.25rem 0;
-  box-sizing: border-box;
-}
 
 .analysis-item .inner {
   display: flex;
   gap: 0;
   align-items: center;
   width: 100%;
-  box-sizing: border-box;
   padding: 0;
 }
 .analysis-item .media {
@@ -685,7 +625,6 @@ h1 {
   display: block;
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box;
   aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 8px;
@@ -695,9 +634,7 @@ h1 {
 }
 .analysis-item .content {
   flex: 1 1 45%;
-  padding: 1rem; /* inner padding for card content */
-  box-sizing: border-box;
-  /* Glass card fill */
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.19);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -706,11 +643,9 @@ h1 {
   position: relative;
   z-index: 0;
   transition: box-shadow 0.18s ease, transform 0.18s ease;
-  /* Simplified rainbow border animation */
-  --rain-angle: 0deg;
+  /* Static rainbow gradient border */
   border: 2px solid transparent;
   border-image: conic-gradient(
-      from var(--rain-angle),
       rgba(255, 0, 71, 0.45),
       rgba(255, 122, 0, 0.45),
       rgba(255, 209, 0, 0.45),
@@ -720,7 +655,6 @@ h1 {
       rgba(255, 0, 71, 0.45)
     )
     1 round;
-  animation: rainbow-rotate 6s linear infinite;
 }
 
 /* Smaller screen: lighter glass and slightly smaller radius */
@@ -733,28 +667,10 @@ h1 {
     backdrop-filter: none;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    animation: none; /* disable rotation on small screens */
-    --rain-angle: 0deg;
   }
 }
 
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .analysis-item .content {
-    animation: none !important;
-    --rain-angle: 0deg !important;
-  }
-}
-
-@keyframes rainbow-rotate {
-  to {
-    --rain-angle: 360deg;
-  }
-}
-
-/* Duplicate removed - properties consolidated into the media query above */
-
-/* Alternate media position for visual rhythm */
+/* Desktop: alternating layout for visual interest */
 @media (min-width: 768px) {
   .analysis-list {
     scroll-snap-type: y proximity;
@@ -776,8 +692,7 @@ h1 {
   }
   .analysis-item .content {
     flex: 1 1 48%;
-    /* allow the content column to be much wider on large screens */
-    max-width: 90ch; /* much wider line length for testing */
+    max-width: 90ch;
   }
   /* ensure a slight peek of previous/next */
   .analysis-item {
@@ -790,45 +705,28 @@ h1 {
   }
 }
 
-/* Stretch images to viewport edges: simplified calculation */
+/* Stretch images to viewport edges for immersive effect */
 @media (min-width: 768px) {
   .analysis-list {
     --analysis-frame-width: min(1600px, 85vw);
     --side-gap: calc((100vw - var(--analysis-frame-width)) / 2);
   }
 
-  /* odd items: image on left -> shift image left to touch viewport left edge */
   .analysis-item:nth-child(odd) .media img {
     margin-left: calc(var(--side-gap) * -1.25);
     margin-right: 0;
   }
-  /* even items: image on right -> shift image right to touch viewport right edge */
   .analysis-item:nth-child(even) .media img {
     margin-right: calc(var(--side-gap) * -1.25);
     margin-left: 0;
   }
-  /* ensure overflow visible so images can stick out */
   .analysis-section,
   .analysis-list {
     overflow: visible;
   }
 }
 
-/* Active item styling
-   NOTE: user requested removing the blue highlight that appears while
-   scrolling. Keep the .active class for JS state but remove visual
-   emphasis so items aren't marked in blue when scrolled into view. */
-.analysis-item.active .content {
-  background: transparent; /* no blue tint on active */
-  border-left: none; /* remove left accent */
-  box-shadow: none; /* remove any subtle shadow change */
-}
-.analysis-item:nth-child(even).active .content {
-  border-left: none;
-  border-right: none; /* remove right accent for even items */
-}
-
-/* Small screens: stack media above content */
+/* Mobile: vertical stack layout */
 @media (max-width: 899px) {
   .analysis-item .inner {
     flex-direction: column;
@@ -841,41 +739,13 @@ h1 {
   }
 }
 
-/* Duplicate removed - already defined above */
-
-/* Raleway utility classes (descriptive names) */
-.raleway-light {
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-}
-.raleway-regular {
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-.raleway-medium {
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-}
-.raleway-bold {
-  font-family: "Raleway", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-}
-
-/* Background scrolling animation (simplified for modern browsers) */
+/* Subtle background pattern animation */
 @keyframes bg-scrolling-reverse {
   100% {
     background-position: 50px 50px;
   }
 }
-/* Main styles */
+/* Main body layout with animated background */
 body {
   /* ensure page uses column flex so footer can be pushed to bottom */
   display: flex;
@@ -893,7 +763,7 @@ body {
   animation: bg-scrolling-reverse 0.92s infinite linear;
 }
 
-/* Larger headers on wider screens */
+/* Responsive header/footer heights */
 @media (min-width: 768px) {
   :root {
     --header-height: 72px;
@@ -924,8 +794,6 @@ footer {
   padding: 0 1rem;
 }
 
-
-
 /* Give users the option to reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .title {
@@ -939,33 +807,31 @@ footer {
   }
 }
 
-/* Article styles for the right column */
+/* Article styling with consistent spacing */
 .site-article {
-  color: #000; /* black text */
-  text-align: left; /* justify to left */
-  padding-left: 0.25rem; /* mobile-first: bring text closer to iframe */
-  --article-gap: 1.25rem; /* default gap between article elements */
+  color: #000;
+  text-align: left;
+  padding-left: 0.25rem;
+  --article-gap: 1.25rem;
 }
 .site-article__title {
   /* ~3x larger than before, responsive */
   font-size: clamp(2.5rem, 6.5vw, 3.5rem);
   font-weight: 800;
-  margin: 0 0 var(--article-gap) 0; /* use uniform gap */
+  margin: 0 0 var(--article-gap);
 }
 
-/* Slightly reduce h3 line-height for tighter headings */
 h3,
 .site-article__title {
-  line-height: 1.05; /* slightly tighter than default */
+  line-height: 1.05;
 }
 .site-article__body {
   font-size: 0.95rem;
   line-height: 1.6;
-  margin: 0 0 var(--article-gap) 0; /* same gap to the button */
+  margin: 0 0 var(--article-gap);
 }
 
 @media (min-width: 768px) {
-  /* ensure article height doesn't exceed iframe on desktop; scroll if needed */
   .site-article {
     max-height: calc(78vh - var(--header-height));
     overflow-y: auto;
@@ -1074,7 +940,7 @@ button:hover .button-text,
 }
 
 .embed-fallback p {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem;
   color: #222;
 }
 
@@ -1097,7 +963,6 @@ button:hover .button-text,
   display: block;
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box;
   aspect-ratio: 16 / 9;
   height: auto;
   object-fit: cover;

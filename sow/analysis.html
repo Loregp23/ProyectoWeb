@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Análisis - Placeholder</title>
+    <title>Análisis - The Other Side of Truth</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Carattere&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sulphur+Point:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/css/index.css" />
@@ -23,11 +23,12 @@
       </nav>
     </header>
     <main>
-      <section class="analysis-section" style="padding: 3rem 2rem">
+      <!-- Analysis Content: Introduction and detailed evaluation -->
+      <section class="analysis-section">
         <div class="analysis-intro">
           <h2 class="rainbow text-xl">The Other Side of Truth</h2>
         </div>
-        <!-- Texto de análisis: fluye en columnas responsivas -->
+        <!-- Analysis description text -->
         <div class="analysis-description">
           <p class="montserrat-analysis">
             Los <strong>CSS Design Awards</strong> (CSS Awards) son uno de los
@@ -57,7 +58,7 @@
             digital con alto valor emocional y estético.
           </p>
         </div>
-        <!-- Screenshot marquee/grid gallery: single row that auto-scrolls horizontally -->
+        <!-- Auto-scrolling gallery: Screenshots of the analyzed website -->
         <div
           class="screenshot-marquee"
           aria-label="Galería de capturas automáticas"
@@ -150,7 +151,6 @@
                   />
                 </figure>
               </div>
-              <!-- duplicated track for seamless loop -->
               <div class="marquee-track" aria-hidden="true">
                 <figure class="shot">
                   <img
@@ -240,10 +240,8 @@
             </div>
           </div>
         </div>
+        <!-- Detailed Analysis Items: Each section covers a specific aspect -->
         <div class="analysis-list" id="analysisList">
-          <!-- 13 items: media + content -->
-          <!-- We'll alternate media position with CSS :nth-child -->
-
           <div class="analysis-item">
             <div class="inner">
               <div class="media">
@@ -665,12 +663,12 @@
               </div>
             </div>
           </div>
-          <!-- removed 13th item to keep gallery at 12 items -->
         </div>
       </section>
     </main>
+    <!-- Interactive Scripts: Handle page animations and user interactions -->
     <script>
-      // Sync active item using IntersectionObserver
+      // Active Item Tracker: Highlights current section in viewport
       (function () {
         var items = Array.from(document.querySelectorAll(".analysis-item"));
         if (!items.length) return;
@@ -692,178 +690,80 @@
         });
       })();
     </script>
-    <script>
-      // Show footer only when user is near the page bottom
-      (function () {
-        var throttle = function (fn, wait) {
-          var t = null;
-          return function () {
-            if (t) return;
-            t = setTimeout(function () {
-              t = null;
-              fn();
-            }, wait);
-          };
-        };
-
-        function checkFooter() {
-          var scrollY = window.scrollY || window.pageYOffset;
-          var vh = Math.max(
-            document.documentElement.clientHeight || 0,
-            window.innerHeight || 0
-          );
-          var docH = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
-          );
-          if (scrollY + vh >= docH - 140) {
-            document.body.classList.add("footer-visible");
-          } else {
-            document.body.classList.remove("footer-visible");
-          }
-        }
-
-        window.addEventListener("scroll", throttle(checkFooter, 120));
-        window.addEventListener("resize", throttle(checkFooter, 200));
-        // initial check
-        checkFooter();
-      })();
-    </script>
     <footer>
       <p>© 2025 Web Atelier (UDIT)</p>
     </footer>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-      // Page-level ScrollReveal initializer: reveal header, intro, description,
-      // marquee, each .analysis-item and footer. Uses interval + distance.
+      // Page Reveal Animations: Elements appear as user scrolls
       (function () {
         if (typeof ScrollReveal === "undefined") return;
 
-        var sr = ScrollReveal({
-          reset: true,
-        });
+        var sr = ScrollReveal({ reset: true });
 
-        // helper to add pre-blur class to elements before animation
-        function preBlur(selectors) {
-          document.querySelectorAll(selectors).forEach(function (el) {
+        // Animation handlers for blur effects
+        var blurHandlers = {
+          beforeReveal: function (el) {
+            el.classList.add("sr-unblur");
+            el.classList.remove("sr-pre");
+          },
+          beforeReset: function (el) {
+            el.classList.remove("sr-unblur");
+            el.classList.add("sr-pre");
+          },
+        };
+
+        var reveals = [
+          {
+            sel: "header",
+            origin: "top",
+            distance: "20px",
+            duration: 600,
+            interval: 80,
+          },
+          {
+            sel: ".analysis-intro h2",
+            origin: "bottom",
+            distance: "12px",
+            duration: 700,
+            interval: 80,
+            delay: 150,
+          },
+          {
+            sel: ".analysis-description p",
+            origin: "bottom",
+            distance: "8px",
+            duration: 750,
+            interval: 80,
+            delay: 220,
+          },
+          {
+            sel: ".screenshot-marquee",
+            origin: "left",
+            distance: "24px",
+            duration: 800,
+            delay: 300,
+          },
+          {
+            sel: ".analysis-item",
+            origin: "bottom",
+            distance: "18px",
+            duration: 800,
+            interval: 180,
+            delay: 200,
+          },
+        ];
+
+        reveals.forEach(function (cfg) {
+          document.querySelectorAll(cfg.sel).forEach(function (el) {
             el.classList.add("sr-pre");
           });
-        }
-
-        // Basic reveal for header and intro (apply pre-blur then reveal)
-        preBlur("header");
-        sr.reveal("header", {
-          origin: "top",
-          distance: "20px",
-          duration: 600,
-          opacity: 0,
-          interval: 80,
-          beforeReveal: function (el) {
-            el.classList.add("sr-unblur");
-            el.classList.remove("sr-pre");
-          },
-          beforeReset: function (el) {
-            el.classList.remove("sr-unblur");
-            el.classList.add("sr-pre");
-          },
-        });
-
-        preBlur(".analysis-intro h2");
-        sr.reveal(".analysis-intro h2", {
-          origin: "bottom",
-          distance: "12px",
-          duration: 700,
-          opacity: 0,
-          interval: 80,
-          delay: 150,
-          beforeReveal: function (el) {
-            el.classList.add("sr-unblur");
-            el.classList.remove("sr-pre");
-          },
-          beforeReset: function (el) {
-            el.classList.remove("sr-unblur");
-            el.classList.add("sr-pre");
-          },
-        });
-
-        // paragraphs: make them slightly slower / delayed
-        preBlur(".analysis-description p");
-        sr.reveal(".analysis-description p", {
-          origin: "bottom",
-          distance: "8px",
-          duration: 750,
-          opacity: 0,
-          interval: 80,
-          delay: 220,
-          beforeReveal: function (el) {
-            el.classList.add("sr-unblur");
-            el.classList.remove("sr-pre");
-          },
-          beforeReset: function (el) {
-            el.classList.remove("sr-unblur");
-            el.classList.add("sr-pre");
-          },
-        });
-
-        // marquee and other blocks
-        preBlur(".screenshot-marquee");
-        sr.reveal(".screenshot-marquee", {
-          origin: "left",
-          distance: "24px",
-          duration: 800,
-          opacity: 0,
-          delay: 300,
-          beforeReveal: function (el) {
-            el.classList.add("sr-unblur");
-            el.classList.remove("sr-pre");
-          },
-          beforeReset: function (el) {
-            el.classList.remove("sr-unblur");
-            el.classList.add("sr-pre");
-          },
-        });
-
-        // Reveal each analysis item with a stagger and internal delay for text
-        preBlur(".analysis-item");
-        sr.reveal(".analysis-item", {
-          origin: "bottom",
-          distance: "18px",
-          duration: 800,
-          opacity: 0,
-          interval: 180,
-          delay: 200,
-          beforeReveal: function (el) {
-            el.classList.add("sr-unblur");
-            el.classList.remove("sr-pre");
-          },
-          beforeReset: function (el) {
-            el.classList.remove("sr-unblur");
-            el.classList.add("sr-pre");
-          },
-        });
-
-        // Footer
-        preBlur("footer");
-        sr.reveal("footer", {
-          origin: "bottom",
-          distance: "10px",
-          duration: 600,
-          delay: 500,
-          opacity: 0,
-          beforeReveal: function (el) {
-            el.classList.add("sr-unblur");
-            el.classList.remove("sr-pre");
-          },
-          beforeReset: function (el) {
-            el.classList.remove("sr-unblur");
-            el.classList.add("sr-pre");
-          },
+          sr.reveal(cfg.sel, Object.assign({ opacity: 0 }, cfg, blurHandlers));
         });
       })();
     </script>
     <script>
-      // JS marquee: drive the marquee using requestAnimationFrame to avoid
-      // being throttled on scroll in some browsers. Respects prefers-reduced-motion.
+      // Gallery Marquee: Smooth auto-scrolling image carousel
       (function () {
         if (
           window.matchMedia &&
@@ -877,13 +777,12 @@
         );
         if (!scroller) return;
 
-        // Compute total width of one track (assumes two .marquee-track children)
         var track = scroller.querySelector(".marquee-track");
         if (!track) return;
 
         var imgs = Array.from(track.querySelectorAll("img"));
 
-        // Wait for all images in the first track to load (or timeout)
+        // Image loading handler
         function imagesLoaded(images, timeout) {
           return new Promise(function (resolve) {
             var count = images.length;
@@ -896,7 +795,7 @@
             }, timeout || 3000);
             images.forEach(function (img) {
               if (img.complete && img.naturalWidth) {
-                count--; // already loaded
+                count--;
                 if (count === 0 && !done) {
                   clearTimeout(timer);
                   done = true;
@@ -925,14 +824,12 @@
         }
 
         imagesLoaded(imgs, 5000).then(function () {
-          // measure width of first track
           var firstTrackWidth = Math.round(track.getBoundingClientRect().width);
-          // set scroller explicit width to avoid layout shifts (two tracks back-to-back)
           scroller.style.width = firstTrackWidth * 2 + "px";
 
-          var speed = 60; // pixels per second
-          var pos = 0;
-          var last = null;
+          var speed = 60,
+            pos = 0,
+            last = null;
 
           function step(timestamp) {
             if (!last) last = timestamp;
@@ -940,7 +837,6 @@
             last = timestamp;
             pos += speed * dt;
 
-            // wrap with modulo for continuous seamless loop
             var x = pos % firstTrackWidth;
             scroller.style.transform = "translate3d(" + -x + "px,0,0)";
             raf = requestAnimationFrame(step);
@@ -948,7 +844,6 @@
 
           var raf = requestAnimationFrame(step);
 
-          // Recalculate on resize to avoid jumps
           var resizeTimeout;
           window.addEventListener("resize", function () {
             cancelAnimationFrame(raf);
@@ -956,7 +851,6 @@
             resizeTimeout = setTimeout(function () {
               pos = 0;
               last = null;
-              // remeasure
               firstTrackWidth = Math.round(track.getBoundingClientRect().width);
               scroller.style.width = firstTrackWidth * 2 + "px";
               raf = requestAnimationFrame(step);
@@ -966,8 +860,7 @@
       })();
     </script>
     <script>
-      // Per-character H2 animation: split main H2 and each .analysis-item h2 into chars
-      // then animate with WAAPI to mimic animejs splitText + animate + stagger with bounce and looping.
+      // Text Animations: Character-by-character reveal effects for headings
       (function () {
         var groups = [
           {
@@ -975,19 +868,16 @@
             params: {
               stagger: 50,
               duration: 1400,
-              // intro: larger rise
               translate: "24px",
               rotateFrom: -360,
               loopDelay: 1000,
             },
           },
           {
-            // apply to all h2 inside main except the intro (which uses .text-xl)
             selector: "main h2:not(.text-xl)",
             params: {
               stagger: 40,
               duration: 1000,
-              // item and other h2s: smaller rise
               translate: "14px",
               rotateFrom: -270,
               loopDelay: 700,
@@ -1015,11 +905,11 @@
           var nodes = Array.from(root.querySelectorAll(".char"));
           if (!nodes.length) return;
 
-          var stagger = opts.stagger || 50;
-          var duration = opts.duration || 1200;
-          var translate = opts.translate || "-2rem";
-          var rotateFrom = opts.rotateFrom || -360;
-          var loopDelay = opts.loopDelay || 800;
+          var stagger = opts.stagger || 50,
+            duration = opts.duration || 1200,
+            translate = opts.translate || "-2rem",
+            rotateFrom = opts.rotateFrom || -360,
+            loopDelay = opts.loopDelay || 800;
 
           function run() {
             nodes.forEach(function (node, i) {
@@ -1050,38 +940,32 @@
                   offset: 1,
                 },
               ];
-              // approximate bounce with keyframe offsets
               setTimeout(function () {
                 try {
-                  var anim = node.animate(kf, {
+                  node.animate(kf, {
                     duration: duration,
                     easing: "cubic-bezier(.2,.9,.3,1)",
                     fill: "forwards",
                   });
-                  // nothing extra on finish; let loop manage
                 } catch (e) {}
               }, i * stagger);
             });
 
             var total = duration + nodes.length * stagger + loopDelay;
-            // after total, cancel current animations and restart
             setTimeout(function () {
               nodes.forEach(function (n) {
                 n.getAnimations().forEach(function (a) {
                   a.cancel();
                 });
-                n.style.transform = "";
-                n.style.opacity = "";
+                n.removeAttribute("style");
               });
               run();
             }, total);
           }
 
-          // kickoff with a small delay so page paints first
           setTimeout(run, 600 + Math.random() * 200);
         }
 
-        // Split all targets first
         groups.forEach(function (g) {
           Array.from(document.querySelectorAll(g.selector)).forEach(function (
             el
@@ -1090,7 +974,6 @@
           });
         });
 
-        // Start animations for each matched element with its params
         groups.forEach(function (g) {
           Array.from(document.querySelectorAll(g.selector)).forEach(function (
             el
@@ -1100,9 +983,6 @@
         });
       })();
     </script>
-
-    <!-- SVG animation removed per user request -->
-
     <script src="../assets/js/main.js"></script>
   </body>
 </html>

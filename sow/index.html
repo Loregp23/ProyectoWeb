@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <!-- Document metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Breve descripción del sitio web." />
-    <meta name="keywords" content="diseño, web, educativo" />
-    <meta name="author" content="Nombre del autor" />
-    <meta name="robots" content="index,follow" />
+    <meta
+      name="description"
+      content="Análisis de sitios web premiados por Awwwards, Webby Awards, FWA y CSSDA. Estudio de tendencias en diseño web moderno."
+    />
+    <meta name="author" content="Web Atelier UDIT" />
+
+    <!-- Favicons and PWA manifest -->
     <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
-    <link rel="shortcut icon" href="../assets/icons/favicon.ico" />
     <link
       rel="icon"
       type="image/png"
@@ -21,20 +24,25 @@
       href="../assets/icons/apple-touch-icon.png"
     />
     <link rel="manifest" href="../manifest.json" />
+
     <title>Some Outstanding Webs – Análisis de Sitios Premiados</title>
+
+    <!-- Stylesheets: Base styles + Project specific -->
     <link rel="stylesheet" href="../assets/css/index.css" />
     <link rel="stylesheet" href="../assets/css/sow.css" />
+
+    <!-- Optimized font loading for Montserrat, Poppins, and Raleway -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Carattere&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sulphur+Point:wght@300;400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Poppins:wght@600;700;800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="sow-index">
+    <!-- glass morphism header with navigation -->
     <header>
       <nav>
-        <!-- Menú de navegación fijo -->
         <span class="sow-brand">Some Outstanding Webs</span>
         <ul>
           <li><a href="#site-awwwards">Awwwards</a></li>
@@ -46,6 +54,7 @@
     </header>
 
     <main>
+      <!-- Hero section with animated rainbow title -->
       <section class="cover">
         <h1
           class="title poppins-bold-italic rainbow"
@@ -54,24 +63,22 @@
           SOME OUTSTANDING WEBS
         </h1>
       </section>
-      <!-- Secciones individuales para cada sitio -->
       <section id="site-awwwards">
         <h2 class="rainbow">Awwwards</h2>
         <div class="site-split">
           <div class="site-split__left">
+            <!-- Live iframe with fallback system for blocked embeds -->
             <div class="site-embed-wrapper">
               <iframe
                 class="site-embed"
                 data-src="https://theothersideoftruth.tftl.agency/"
                 title="Awwwards preview"
                 loading="lazy"
-                frameborder="0"
                 referrerpolicy="no-referrer"
               ></iframe>
             </div>
           </div>
           <div class="site-split__right">
-            <!-- Contenido de análisis del sitio Awwwards -->
             <article class="site-article">
               <h3 class="site-article__title">The Other Side of Truth</h3>
               <p class="site-article__body">
@@ -102,7 +109,6 @@
                 data-src="https://www.oddcommon.com/"
                 title="Webby preview"
                 loading="lazy"
-                frameborder="0"
                 referrerpolicy="no-referrer"
               ></iframe>
               <div class="embed-fallback" aria-hidden="true">
@@ -147,7 +153,6 @@
                 data-src="https://stefanvitasovic.dev/"
                 title="FWA preview"
                 loading="lazy"
-                frameborder="0"
                 referrerpolicy="no-referrer"
               ></iframe>
               <div class="embed-fallback" aria-hidden="true">
@@ -193,7 +198,6 @@
                 data-src="https://www.shipsltd.co.jp/pages/sp_50th_anniversary.aspx"
                 title="CSSDA preview"
                 loading="lazy"
-                frameborder="0"
                 referrerpolicy="no-referrer"
               ></iframe>
               <div class="embed-fallback" aria-hidden="true">
@@ -233,132 +237,62 @@
       </section>
     </main>
 
+    <!-- Project footer -->
     <footer>
       <p>© 2025 Web Atelier (UDIT) – Informe de análisis.</p>
     </footer>
-    <script>
-      // Read data attributes and apply to all iframes, with a fallback if embedding is blocked
-      (function () {
-        var iframes = Array.from(document.querySelectorAll(".site-embed"));
-        if (!iframes.length) return;
-        iframes.forEach(function (iframe) {
-          var src = iframe.getAttribute("data-src");
-          var wrap = iframe.closest(".site-embed-wrapper");
-          var fallback = wrap ? wrap.querySelector(".embed-fallback") : null;
-          // attempt to set src
-          if (src) iframe.src = src;
 
-          // detect load: some browsers won't fire error; use timeout to assume blocked
+    <!-- Enhanced iframe loading with fallback system -->
+    <script>
+      (function () {
+        // Initialize all embed iframes with lazy loading and fallback handling
+        document.querySelectorAll(".site-embed").forEach(function (iframe) {
+          var src = iframe.getAttribute("data-src");
+          var fallback = iframe
+            .closest(".site-embed-wrapper")
+            .querySelector(".embed-fallback");
+          if (!src) return;
+
+          iframe.src = src;
           var loaded = false;
-          var onLoad = function () {
+
+          iframe.addEventListener("load", function () {
             loaded = true;
             if (fallback) fallback.style.display = "none";
-          };
-          iframe.addEventListener("load", onLoad);
+          });
 
           setTimeout(function () {
-            if (loaded) return;
-            // If iframe has no contentDocument accessible or remains empty, show fallback
-            try {
-              var doc = iframe.contentDocument || iframe.contentWindow.document;
-              // If we can access doc and it has body content, assume success
-              if (doc && doc.body && doc.body.childNodes.length) {
-                loaded = true;
-                if (fallback) fallback.style.display = "none";
-                return;
-              }
-            } catch (e) {
-              // cross-origin access will throw — embedding might be blocked
-            }
             if (!loaded && fallback) {
               fallback.style.display = "block";
-              // set fallback link href to provided src if empty or generic
               var link = fallback.querySelector(".embed-open");
-              if (link && src) link.href = src;
+              if (link) link.href = src;
             }
-          }, 1200); // 1.2s timeout
+          }, 1200);
         });
-      })();
-    </script>
-    <script>
-      // Show footer only when user is near the page bottom
-      (function () {
-        var throttle = function (fn, wait) {
-          var t = null;
-          return function () {
-            if (t) return;
-            t = setTimeout(function () {
-              t = null;
-              fn();
-            }, wait);
-          };
-        };
 
-        function checkFooter() {
-          var scrollY = window.scrollY || window.pageYOffset;
-          var vh = Math.max(
-            document.documentElement.clientHeight || 0,
-            window.innerHeight || 0
-          );
-          var docH = Math.max(
-            document.body.scrollHeight,
-            document.documentElement.scrollHeight
-          );
-          // consider near-bottom when within 140px of the end (tweakable)
-          if (scrollY + vh >= docH - 140) {
-            document.body.classList.add("footer-visible");
-          } else {
-            document.body.classList.remove("footer-visible");
+        // Per-character entrance animation for hero title (respects reduced motion)
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          var title = document.querySelector(".cover .title");
+          if (title) {
+            setTimeout(function () {
+              var text = title.textContent.trim();
+              title.textContent = "";
+              var frag = document.createDocumentFragment();
+              for (var i = 0; i < text.length; i++) {
+                var span = document.createElement("span");
+                span.className = "char";
+                span.textContent = text[i] === " " ? "\u00A0" : text[i];
+                span.style.animationDelay = i * 45 + "ms";
+                frag.appendChild(span);
+              }
+              title.appendChild(frag);
+              title.classList.add("animate-chars");
+            }, 100);
           }
         }
-
-        window.addEventListener("scroll", throttle(checkFooter, 120));
-        window.addEventListener("resize", throttle(checkFooter, 200));
-        // initial check
-        checkFooter();
       })();
     </script>
+    <!-- External animation library for section headings -->
     <script src="../assets/js/h2-split-anim.js"></script>
-    <script>
-      (function () {
-        // Respect reduced motion
-        var mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-        if (mq && mq.matches) return;
-
-        var title = document.querySelector(".cover .title");
-        if (!title) return;
-
-        // Wait for fonts/render
-        function whenReady(cb) {
-          if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(cb);
-            // also fallback timeout
-            setTimeout(cb, 600);
-          } else {
-            setTimeout(cb, 80);
-          }
-        }
-
-        whenReady(function () {
-          var text = title.textContent.trim();
-          title.textContent = "";
-          var frag = document.createDocumentFragment();
-          for (var i = 0; i < text.length; i++) {
-            var ch = text[i];
-            var span = document.createElement("span");
-            span.className = "char";
-            span.textContent = ch === " " ? "\u00A0" : ch;
-            // stagger via inline style delay
-            span.style.animationDelay = i * 45 + "ms";
-            frag.appendChild(span);
-          }
-          title.appendChild(frag);
-          // trigger animation class after next frame
-          requestAnimationFrame(function () {
-            title.classList.add("animate-chars");
-          });
-        });
-      })();
-    </script>
   </body>
 </html>
